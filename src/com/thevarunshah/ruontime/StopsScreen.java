@@ -11,7 +11,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
@@ -41,7 +40,6 @@ public class StopsScreen extends Activity {
 			StrictMode.setThreadPolicy(policy);
 		}
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.stops_screen);
 		
 		activeStops = Database.findActiveStops();

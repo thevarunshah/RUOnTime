@@ -13,7 +13,7 @@
         android:orientation="vertical" >
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/ruontime_logo"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
@@ -49,12 +49,12 @@
             android:text="Find Fastest Route" />
 
         <Button
-            android:id="@+id/settings"
+            android:id="@+id/about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|fill_horizontal"
             android:layout_margin="5dp"
-            android:text="Settings" />
+            android:text="About" />
     </LinearLayout>
 
 </FrameLayout>

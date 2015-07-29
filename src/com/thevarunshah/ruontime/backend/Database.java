@@ -20,11 +20,15 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import android.util.Log;
+
 public class Database {
 	
 	private static DocumentBuilderFactory factory = null;
 	private static DocumentBuilder builder = null;
-	private static String nextBusBaseURL = "http://webservices.nextbus.com/service/publicXMLFeed?a=rutgers&command=";
+	private final static String nextBusBaseURL = "http://webservices.nextbus.com/service/publicXMLFeed?a=rutgers&command=";
+	
+	private final static String TAG = "Database";
 	
 	public static HashMap<String, Route> routes = new HashMap<String, Route>();
 	public static HashMap<String, Stop> stops = new HashMap<String, Stop>();
@@ -210,7 +214,7 @@ public class Database {
 			factory = DocumentBuilderFactory.newInstance();
 		    builder = factory.newDocumentBuilder();
 		}catch(Exception e){
-			System.out.println("exception: " + e);			
+			Log.i(TAG, "exception: " + e);			
 		}
 		
 		String config = HttpGet(nextBusBaseURL + "routeConfig&terse");

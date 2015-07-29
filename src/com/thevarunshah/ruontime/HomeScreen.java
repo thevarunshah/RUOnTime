@@ -42,8 +42,8 @@ public class HomeScreen extends Activity implements OnClickListener {
 		viewStops.setOnClickListener(this);
 		Button fastestRoute = (Button) findViewById(R.id.fastestRoute);
 		fastestRoute.setOnClickListener(this);
-		Button settings = (Button) findViewById(R.id.settings);
-		settings.setOnClickListener(this);
+		Button about = (Button) findViewById(R.id.about);
+		about.setOnClickListener(this);
 	}
 
 
@@ -123,7 +123,7 @@ public class HomeScreen extends Activity implements OnClickListener {
 				startActivity(i);
 				break;
 			}
-			case R.id.settings:{
+			case R.id.about:{
 				Toast.makeText(getApplicationContext(), "App created by Varun Shah", Toast.LENGTH_LONG).show();
 				break;
 			}

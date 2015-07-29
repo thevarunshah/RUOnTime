@@ -27,6 +27,7 @@ public final class R {
         public static final int title=0x7f020002;
     }
     public static final class id {
+        public static final int about=0x7f08000f;
         public static final int action_settings=0x7f08001a;
         public static final int blankSpace1=0x7f080005;
         public static final int blankSpace2=0x7f080008;
@@ -39,12 +40,11 @@ public final class R {
         public static final int fastestRouteListItem=0x7f080001;
         public static final int filterText=0x7f080018;
         public static final int findPossibleRoutes=0x7f080009;
-        public static final int imageView1=0x7f08000b;
         public static final int routeStopsExListView=0x7f080012;
         public static final int routeStopsListHeader=0x7f080010;
         public static final int routeStopsListItem=0x7f080011;
         public static final int routesListView=0x7f080013;
-        public static final int settings=0x7f08000f;
+        public static final int ruontime_logo=0x7f08000b;
         public static final int startStop=0x7f080004;
         public static final int startStopText=0x7f080003;
         public static final int stopRoutesExListView=0x7f080016;
@@ -75,8 +75,11 @@ public final class R {
         public static final int home_screen=0x7f070000;
     }
     public static final class string {
-        public static final int action_settings=0x7f050001;
+        public static final int action_settings=0x7f050004;
         public static final int app_name=0x7f050000;
+        public static final int fastest_route=0x7f050003;
+        public static final int routes=0x7f050001;
+        public static final int stops=0x7f050002;
     }
     public static final class style {
         /** 

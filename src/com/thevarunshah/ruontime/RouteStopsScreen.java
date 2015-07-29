@@ -10,7 +10,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
-import android.view.Window;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
@@ -34,7 +33,6 @@ public class RouteStopsScreen extends Activity {
 			StrictMode.setThreadPolicy(policy);
 		}
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.route_stops_screen);
 		resuming = false;
 		
@@ -46,6 +44,7 @@ public class RouteStopsScreen extends Activity {
 		HashMap<StopTimes, List<Integer>> listDataChild = new HashMap<StopTimes, List<Integer>>();
 		
 		Route r = Database.routes.get(routeId);
+		setTitle(r.getName() + " Route");
 		ArrayList<StopTimes> routeStopTimes = Database.findStopsForRoute(r);
 		for(StopTimes st : routeStopTimes){
 			listDataHeader.add(st);

@@ -7,7 +7,7 @@ public class RouteTimes implements Comparable<RouteTimes> {
 
 	private String id;
 	private String direction;
-	private ArrayList<Integer> times;
+	private ArrayList<Integer> times = new ArrayList<Integer>();
 	
 	public RouteTimes(String id, String direction){
 		this.id = id;

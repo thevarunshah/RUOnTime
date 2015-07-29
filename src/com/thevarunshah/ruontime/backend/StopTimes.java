@@ -7,7 +7,7 @@ public class StopTimes {
 
 	private String id;
 	private String name;
-	private ArrayList<Integer> times;
+	private ArrayList<Integer> times = new ArrayList<Integer>();
 	
 	public StopTimes(String id, String name){
 		this.id = id;
