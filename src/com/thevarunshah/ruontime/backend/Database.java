@@ -231,6 +231,11 @@ public class Database {
 		    	if(route.getNodeName().equals("route") && route.getNodeType() == Node.ELEMENT_NODE){
 		    		
 		    		Element routeElement = (Element) route;
+		    		String routeTag = routeElement.getAttribute("tag");
+		    		if(routeTag.equals("penn") || routeTag.equals("pennexpr") || routeTag.equals("mdntpenn") || 
+		    				routeTag.equals("kearney") || routeTag.equals("connect")){
+		    			continue;
+		    		}
 		    		Route r = new Route(routeElement.getAttribute("tag"), routeElement.getAttribute("title"));
 		    		
 		    		ArrayList<Stop> tmpStops = new ArrayList<Stop>();
@@ -296,6 +301,9 @@ public class Database {
 		    	if(vehicle.getNodeName().equals("vehicle") && vehicle.getNodeType() == Node.ELEMENT_NODE){
 		    		
 		    		Element ev = (Element) vehicle;
+		    		if(!routes.containsKey(ev.getAttribute("routeTag"))){
+		    			continue;
+		    		}
 		    		Route r = new Route(ev.getAttribute("routeTag"), routes.get(ev.getAttribute("routeTag")).getName());
 		    		if(!activeRoutes.contains(r)){
 		    			activeRoutes.add(r);

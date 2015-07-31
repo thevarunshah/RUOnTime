@@ -1,16 +1,11 @@
 package com.thevarunshah.ruontime;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
@@ -29,12 +24,14 @@ public class HomeScreen extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.home_screen);
-
+		
+		/*
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 			.add(R.id.container, new PlaceholderFragment())
 			.commit();
 		}
+		*/
 
 		Button viewRoutes = (Button) findViewById(R.id.viewRoutes);
 		viewRoutes.setOnClickListener(this);
@@ -46,7 +43,7 @@ public class HomeScreen extends Activity implements OnClickListener {
 		about.setOnClickListener(this);
 	}
 
-
+	/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -66,10 +63,12 @@ public class HomeScreen extends Activity implements OnClickListener {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	*/
 
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
+	/*
 	public static class PlaceholderFragment extends Fragment {
 
 		public PlaceholderFragment() {
@@ -81,6 +80,7 @@ public class HomeScreen extends Activity implements OnClickListener {
 			return rootView;
 		}
 	}
+	*/
 
 	@Override
 	public void onClick(View v) {
