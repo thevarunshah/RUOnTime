@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.thevarunshah.ruontime.backend.Database;
 
@@ -24,14 +23,6 @@ public class HomeScreen extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.home_screen);
-		
-		/*
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction()
-			.add(R.id.container, new PlaceholderFragment())
-			.commit();
-		}
-		*/
 
 		Button viewRoutes = (Button) findViewById(R.id.viewRoutes);
 		viewRoutes.setOnClickListener(this);
@@ -42,45 +33,6 @@ public class HomeScreen extends Activity implements OnClickListener {
 		Button about = (Button) findViewById(R.id.about);
 		about.setOnClickListener(this);
 	}
-
-	/*
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.home_screen, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-	*/
-
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	/*
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_home_screen, container, false);
-			return rootView;
-		}
-	}
-	*/
 
 	@Override
 	public void onClick(View v) {
@@ -124,7 +76,9 @@ public class HomeScreen extends Activity implements OnClickListener {
 				break;
 			}
 			case R.id.about:{
-				Toast.makeText(getApplicationContext(), "App created by Varun Shah", Toast.LENGTH_LONG).show();
+				//Toast.makeText(getApplicationContext(), "App created by Varun Shah", Toast.LENGTH_LONG).show();
+				Intent i = new Intent(HomeScreen.this, AboutScreen.class);
+				startActivity(i);
 				break;
 			}
 		}

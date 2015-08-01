@@ -5,6 +5,6 @@
     <string name="routes">Routes</string>
     <string name="stops">Stops</string>
     <string name="fastest_route">Fastest Route</string>
-    <string name="action_settings">Settings</string>
+    <string name="about">About</string>
 
 </resources>

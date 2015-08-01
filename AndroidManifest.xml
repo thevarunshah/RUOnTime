@@ -50,6 +50,10 @@
             android:name="com.thevarunshah.ruontime.FastestRouteResultsScreen"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.thevarunshah.ruontime.AboutScreen"
+            android:label="@string/about" >
+        </activity>
     </application>
 
 </manifest>
