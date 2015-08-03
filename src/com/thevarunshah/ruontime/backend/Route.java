@@ -49,6 +49,7 @@ public class Route implements Comparable<Route>{
 			case "w2": this.path = "College Ave <--> New Brunswick"; break;
 			case "wknd1": this.path = "College Ave --> Busch --> Livingston --> Cook/Douglass"; break;
 			case "wknd2": this.path = "College Ave --> Cook/Douglass --> Livingston --> Busch"; break;
+			case "rbhs": this.path = "RBHS <--> RWJ"; break;
 			default: this.path = "unknown"; break;
 		}
 	}
