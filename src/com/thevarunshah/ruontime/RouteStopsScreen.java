@@ -10,8 +10,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.thevarunshah.ruontime.backend.Database;
 import com.thevarunshah.ruontime.backend.Route;
@@ -37,6 +39,15 @@ public class RouteStopsScreen extends Activity {
 		resuming = false;
 		
 		routeId = getIntent().getBundleExtra("bundle").getString("routeId");
+		
+		TextView tvMessages = (TextView) findViewById(R.id.route_messages);
+		String message = Database.getMessages(routeId);
+		if(message.equals("all")){
+			((ViewGroup)tvMessages.getParent()).removeView(tvMessages);
+		}
+		else{
+			tvMessages.setText(message);
+		}
 		
 		exListView = (ExpandableListView) findViewById(R.id.routeStopsExListView);
 		

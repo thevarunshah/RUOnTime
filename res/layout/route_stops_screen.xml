@@ -7,7 +7,18 @@
     <ExpandableListView
         android:id="@+id/routeStopsExListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
         android:groupIndicator="@null" />
+
+    <TextView
+        android:id="@+id/route_messages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Route Message"
+        android:textColor="#f00"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>

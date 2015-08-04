@@ -530,6 +530,34 @@ public class Database {
 		return possibleRoutes;
 	}
 	
+	public static String getMessages(String r){
+		
+		String impMessage = "";
+		String xml = HttpGet(nextBusBaseURL + "messages&r=" + r);
+		try{
+		    InputSource is = new InputSource(new StringReader(xml));
+		    Document doc = builder.parse(is);
+		    doc.getDocumentElement().normalize();
+			
+			NodeList body = doc.getChildNodes();
+		    NodeList messages = body.item(0).getChildNodes();
+		    for(int i = 0; i < messages.getLength(); i++){
+		    	
+		    	Node message = messages.item(i);
+		    	if(message.getNodeName().equals("route") && message.getNodeType() == Node.ELEMENT_NODE){
+		    		
+		    		Element em = (Element) message;
+		    		impMessage = em.getAttribute("tag");
+		    	}
+		    }
+		    
+		}catch (Exception e){
+			System.out.println("exception: " + e);
+		}
+		
+		return impMessage;
+	}
+	
 	@SuppressWarnings("unused")
 	private static ArrayList<Integer> findStopTimes(Route r, Stop s){
 		
