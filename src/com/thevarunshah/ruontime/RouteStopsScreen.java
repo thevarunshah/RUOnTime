@@ -42,7 +42,7 @@ public class RouteStopsScreen extends Activity {
 		
 		TextView tvMessages = (TextView) findViewById(R.id.route_messages);
 		String message = Database.getMessages(routeId);
-		if(message.equals("all")){
+		if(message == null){
 			((ViewGroup)tvMessages.getParent()).removeView(tvMessages);
 		}
 		else{

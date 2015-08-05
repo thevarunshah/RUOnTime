@@ -532,7 +532,7 @@ public class Database {
 	
 	public static String getMessages(String r){
 		
-		String impMessage = "";
+		String impMessage = null;
 		String xml = HttpGet(nextBusBaseURL + "messages&r=" + r);
 		try{
 		    InputSource is = new InputSource(new StringReader(xml));
@@ -540,14 +540,29 @@ public class Database {
 		    doc.getDocumentElement().normalize();
 			
 			NodeList body = doc.getChildNodes();
-		    NodeList messages = body.item(0).getChildNodes();
-		    for(int i = 0; i < messages.getLength(); i++){
+		    NodeList routes = body.item(0).getChildNodes();
+		    for(int i = 0; i < routes.getLength(); i++){
 		    	
-		    	Node message = messages.item(i);
-		    	if(message.getNodeName().equals("route") && message.getNodeType() == Node.ELEMENT_NODE){
+		    	Node route = routes.item(i);
+		    	if(route.getNodeName().equals("route") && route.getNodeType() == Node.ELEMENT_NODE){
 		    		
-		    		Element em = (Element) message;
-		    		impMessage = em.getAttribute("tag");
+		    		Element er = (Element) route;
+		    		String routeTag = er.getAttribute("tag");
+		    		if(!routeTag.equals(r)){
+		    			continue;
+		    		}
+		    		
+		    		Node message = er.getFirstChild();
+		    		NodeList msgProperties = message.getChildNodes();
+		    		for(int j = 0; j < msgProperties.getLength(); j++){
+		    			
+		    			Node property = msgProperties.item(j);
+		    			if(property.getNodeName().equals("text") && property.getNodeType() == Node.ELEMENT_NODE){
+		    				
+		    				Element ep = (Element) property;
+		    				impMessage = ep.getTextContent();
+		    			}
+		    		}
 		    	}
 		    }
 		    
