@@ -341,9 +341,12 @@ public class Database {
 	
 	public static ArrayList<StopTimes> findStopsForRoute(Route r){
 		
+		ArrayList<String> stopsOrder = new ArrayList<String>();
 		String routeStops = "predictionsForMultiStops";
 		for(Stop s : routes.get(r.getId()).getStops()){
-			routeStops += "&stops=" + r.getId() + "%7C" + s.getIdsToRoutesMap().keySet().iterator().next();
+			String currStop = s.getIdsToRoutesMap().keySet().iterator().next();
+			routeStops += "&stops=" + r.getId() + "%7C" + currStop;
+			stopsOrder.add(currStop);
 		}
 		
 		ArrayList<StopTimes> routeStopTimes = new ArrayList<StopTimes>();
@@ -387,7 +390,17 @@ public class Database {
 			System.out.println("exception: " + e);
 		}
 		
-		return routeStopTimes;
+		ArrayList<StopTimes> routeStopTimesFinal = new ArrayList<StopTimes>();
+		for(String stopId : stopsOrder){
+			for(StopTimes st : routeStopTimes){
+				if(st.getId().equals(stopId)){
+					routeStopTimesFinal.add(st);
+					break;
+				}
+			}
+		}
+		
+		return routeStopTimesFinal;
 	}
 
 	public static ArrayList<RouteTimes> findRoutesforStop(Stop s){
