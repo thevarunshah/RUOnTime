@@ -5,8 +5,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
-import com.thevarunshah.ruontime.R;
-
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -14,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+
+import com.thevarunshah.ruontime.R;
 
 public class FastestRouteExListAdapter extends BaseExpandableListAdapter {
 	
@@ -53,12 +53,6 @@ public class FastestRouteExListAdapter extends BaseExpandableListAdapter {
         TextView txtListChild = (TextView) convertView.findViewById(R.id.fastestRouteListItem);
         
         final String timeText;
-        int max = frt.getTravelTimes().size();
-		if(max == 0){
-			timeText = "   No trips currently possible for this route.";
-			txtListChild.setText(timeText);
-	        return convertView;
-		}
         Calendar timeNow = Calendar.getInstance();
         Calendar timeNow2 = Calendar.getInstance();
         timeNow.add(Calendar.MINUTE, childText);
@@ -110,6 +104,9 @@ public class FastestRouteExListAdapter extends BaseExpandableListAdapter {
         TextView lblListHeader = (TextView) convertView.findViewById(R.id.fastestRouteListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
+        if(this._listDataChild.get(this._listDataHeader.get(groupPosition)).size() == 0){
+        	lblListHeader.setText(headerTitle + " - no trips currently possible");
+        }
  
         return convertView;
     }
