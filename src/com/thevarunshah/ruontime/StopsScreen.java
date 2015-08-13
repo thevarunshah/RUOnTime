@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.thevarunshah.ruontime.backend.Database;
 import com.thevarunshah.ruontime.backend.Stop;
@@ -44,7 +45,8 @@ public class StopsScreen extends Activity {
 		
 		activeStops = Database.findActiveStops();
 		if(activeStops.size() == 0){
-			activeStops.add(new Stop("none", "no active stops", 0, 0));
+			Toast.makeText(getApplicationContext(), "No stops are currently active.", Toast.LENGTH_LONG).show();
+			finish();
 		}
 		/*
 		 * the below code is to be used if wanting to sort by campus

@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.thevarunshah.ruontime.backend.Database;
 import com.thevarunshah.ruontime.backend.Route;
@@ -32,7 +33,8 @@ public class RoutesScreen extends Activity {
 		activeRoutes = new ArrayList<Route>();
 		activeRoutes = Database.findActiveRoutes();
 		if(activeRoutes.size() == 0){
-			activeRoutes.add(new Route("none", "no active routes"));
+			Toast.makeText(getApplicationContext(), "No routes are current active.", Toast.LENGTH_LONG).show();
+			finish();
 		}
 		
 		ListView lw = (ListView) findViewById(R.id.routesListView);

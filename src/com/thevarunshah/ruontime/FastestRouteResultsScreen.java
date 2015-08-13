@@ -11,6 +11,7 @@ import android.os.StrictMode;
 import android.view.Window;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.thevarunshah.ruontime.backend.Database;
 import com.thevarunshah.ruontime.backend.FastestRouteExListAdapter;
@@ -46,7 +47,8 @@ public class FastestRouteResultsScreen extends Activity {
 		ArrayList<FastestRouteTimes> possibleRoutes = Database.findPossibleRoutes(startStop, destinationStop);
 		Collections.sort(possibleRoutes);
 		if(possibleRoutes.size() == 0){
-			possibleRoutes.add(new FastestRouteTimes("No direct route possible."));
+			Toast.makeText(getApplicationContext(), "No direct route possible.", Toast.LENGTH_LONG).show();
+			finish();
 		}
 		for(FastestRouteTimes frt : possibleRoutes){
 			listDataHeader.add(frt);
