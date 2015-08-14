@@ -461,9 +461,9 @@ public class Database {
 		return stopRouteTimes;
 	}
 	
-	public static ArrayList<FastestRouteTimes> findPossibleRoutes(Stop startStop, Stop destinationStop){
+	public static ArrayList<PossibleRoutesTimes> findPossibleRoutes(Stop startStop, Stop destinationStop){
 		
-		ArrayList<FastestRouteTimes> possibleRoutes = new ArrayList<FastestRouteTimes>();
+		ArrayList<PossibleRoutesTimes> possibleRoutes = new ArrayList<PossibleRoutesTimes>();
 		
 		ArrayList<Route> possibleDirectRoutes = new ArrayList<Route>();
 		ArrayList<Route> activeRoutes = findActiveRoutes();
@@ -480,7 +480,7 @@ public class Database {
 		
 		for(Route route : possibleDirectRoutes){
 			
-			FastestRouteTimes currentRoute = new FastestRouteTimes(route.getId());
+			PossibleRoutesTimes currentRoute = new PossibleRoutesTimes(route.getId());
 			ArrayList<StopTimes> stopTimes = findStopsForRoute(route);
 			
 			int startTime = -1;

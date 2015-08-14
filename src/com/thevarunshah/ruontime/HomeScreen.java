@@ -28,7 +28,7 @@ public class HomeScreen extends Activity implements OnClickListener {
 		viewRoutes.setOnClickListener(this);
 		Button viewStops = (Button) findViewById(R.id.viewStops);
 		viewStops.setOnClickListener(this);
-		Button fastestRoute = (Button) findViewById(R.id.fastestRoute);
+		Button fastestRoute = (Button) findViewById(R.id.possibleRoute);
 		fastestRoute.setOnClickListener(this);
 		Button about = (Button) findViewById(R.id.about);
 		about.setOnClickListener(this);
@@ -48,7 +48,7 @@ public class HomeScreen extends Activity implements OnClickListener {
 				startActivity(i);
 				break;
 			}
-			case R.id.fastestRoute:{
+			case R.id.possibleRoute:{
 				/*
 				LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE); 
 				Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
@@ -71,7 +71,7 @@ public class HomeScreen extends Activity implements OnClickListener {
 					}
 				}
 				*/
-				Intent i = new Intent(HomeScreen.this, FastestRouteSelectionScreen.class);
+				Intent i = new Intent(HomeScreen.this, PossibleRoutesSelectionScreen.class);
 				startActivity(i);
 				break;
 			}

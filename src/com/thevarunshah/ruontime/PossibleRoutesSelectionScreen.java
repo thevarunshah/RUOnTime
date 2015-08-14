@@ -15,7 +15,7 @@ import android.widget.Spinner;
 import com.thevarunshah.ruontime.backend.Database;
 import com.thevarunshah.ruontime.backend.Stop;
 
-public class FastestRouteSelectionScreen extends Activity implements OnClickListener {
+public class PossibleRoutesSelectionScreen extends Activity implements OnClickListener {
 
 	Spinner startStop, destinationStop;
 	
@@ -26,7 +26,7 @@ public class FastestRouteSelectionScreen extends Activity implements OnClickList
 			StrictMode.setThreadPolicy(policy);
 		}
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fastest_route_selection_screen);
+		setContentView(R.layout.possible_routes_selection_screen);
 		
 		ArrayList<Stop> activeStops = Database.findActiveStops();
 		if(activeStops.size() == 0){
@@ -56,7 +56,7 @@ public class FastestRouteSelectionScreen extends Activity implements OnClickList
 				Stop destination = (Stop) destinationStop.getSelectedItem();
 				//Toast.makeText(FastestRouteSelectionScreen.this, "calculating possible routes from " + startStop.getSelectedItem() + 
 				//                " to " + destinationStop.getSelectedItem(), Toast.LENGTH_SHORT).show();
-				Intent i = new Intent(FastestRouteSelectionScreen.this, FastestRouteResultsScreen.class);
+				Intent i = new Intent(PossibleRoutesSelectionScreen.this, PossibleRoutesResultsScreen.class);
 				Bundle extra = new Bundle();
 				extra.putString("startStop", start.getName());
 				extra.putString("destinationStop", destination.getName());

@@ -15,15 +15,15 @@ import android.widget.TextView;
 
 import com.thevarunshah.ruontime.R;
 
-public class FastestRouteExListAdapter extends BaseExpandableListAdapter {
+public class PossibleRoutesExListAdapter extends BaseExpandableListAdapter {
 	
 	private Context _context;
-    private List<FastestRouteTimes> _listDataHeader; // header titles
+    private List<PossibleRoutesTimes> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<FastestRouteTimes, List<Integer>> _listDataChild;
+    private HashMap<PossibleRoutesTimes, List<Integer>> _listDataChild;
  
-    public FastestRouteExListAdapter(Context context, List<FastestRouteTimes> listDataHeader, 
-    		HashMap<FastestRouteTimes, List<Integer>> listChildData) {
+    public PossibleRoutesExListAdapter(Context context, List<PossibleRoutesTimes> listDataHeader, 
+    		HashMap<PossibleRoutesTimes, List<Integer>> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
@@ -43,14 +43,14 @@ public class FastestRouteExListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
  
         final Integer childText = (Integer) getChild(groupPosition, childPosition);
-        FastestRouteTimes frt = (FastestRouteTimes) getGroup(groupPosition);
+        PossibleRoutesTimes frt = (PossibleRoutesTimes) getGroup(groupPosition);
  
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.fastest_route_list_item, parent, false);
+            convertView = infalInflater.inflate(R.layout.possible_routes_list_item, parent, false);
         }
  
-        TextView txtListChild = (TextView) convertView.findViewById(R.id.fastestRouteListItem);
+        TextView txtListChild = (TextView) convertView.findViewById(R.id.possibleRoutesListItem);
         
         final String timeText;
         Calendar timeNow = Calendar.getInstance();
@@ -94,14 +94,14 @@ public class FastestRouteExListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
     	
-    	FastestRouteTimes header = (FastestRouteTimes) getGroup(groupPosition);
+    	PossibleRoutesTimes header = (PossibleRoutesTimes) getGroup(groupPosition);
         String headerTitle = header.toString();
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.fastest_route_list_group, parent, false);
+            convertView = infalInflater.inflate(R.layout.possible_routes_list_group, parent, false);
         }
  
-        TextView lblListHeader = (TextView) convertView.findViewById(R.id.fastestRouteListHeader);
+        TextView lblListHeader = (TextView) convertView.findViewById(R.id.possibleRoutesListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
         if(this._listDataChild.get(this._listDataHeader.get(groupPosition)).size() == 0){

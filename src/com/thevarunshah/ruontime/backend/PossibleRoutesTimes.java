@@ -2,13 +2,13 @@ package com.thevarunshah.ruontime.backend;
 
 import java.util.ArrayList;
 
-public class FastestRouteTimes implements Comparable<FastestRouteTimes>{
+public class PossibleRoutesTimes implements Comparable<PossibleRoutesTimes>{
 	
 	private String id;
 	private ArrayList<Integer> waitTimes;
 	private ArrayList<Integer> travelTimes = new ArrayList<Integer>();
 	
-	public FastestRouteTimes(String id){
+	public PossibleRoutesTimes(String id){
 		this.id = id;
 		this.waitTimes = new ArrayList<Integer>();
 	}
@@ -86,7 +86,7 @@ public class FastestRouteTimes implements Comparable<FastestRouteTimes>{
 		*/
 	}
 	
-	public int compareTo(FastestRouteTimes frt){
+	public int compareTo(PossibleRoutesTimes frt){
 		return this.id.compareTo(frt.id);
 	}
 }

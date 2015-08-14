@@ -14,11 +14,11 @@ import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.thevarunshah.ruontime.backend.Database;
-import com.thevarunshah.ruontime.backend.FastestRouteExListAdapter;
-import com.thevarunshah.ruontime.backend.FastestRouteTimes;
+import com.thevarunshah.ruontime.backend.PossibleRoutesExListAdapter;
+import com.thevarunshah.ruontime.backend.PossibleRoutesTimes;
 import com.thevarunshah.ruontime.backend.Stop;
 
-public class FastestRouteResultsScreen extends Activity {
+public class PossibleRoutesResultsScreen extends Activity {
 	
 	ExpandableListView exListView;
 	ExpandableListAdapter listAdapter;
@@ -31,32 +31,32 @@ public class FastestRouteResultsScreen extends Activity {
 		}
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.fastest_route_results_screen);
+		setContentView(R.layout.possible_routes_results_screen);
 		
 		String startStopString = getIntent().getBundleExtra("bundle").getString("startStop");
 		String destinationStopString = getIntent().getBundleExtra("bundle").getString("destinationStop");
 		
-		exListView = (ExpandableListView) findViewById(R.id.fastestRouteExListView);
+		exListView = (ExpandableListView) findViewById(R.id.possibleRoutesExListView);
 		
-		List<FastestRouteTimes> listDataHeader = new ArrayList<FastestRouteTimes>();
-		HashMap<FastestRouteTimes, List<Integer>> listDataChild = new HashMap<FastestRouteTimes, List<Integer>>();
+		List<PossibleRoutesTimes> listDataHeader = new ArrayList<PossibleRoutesTimes>();
+		HashMap<PossibleRoutesTimes, List<Integer>> listDataChild = new HashMap<PossibleRoutesTimes, List<Integer>>();
 		
 		Stop startStop = Database.stops.get(startStopString);
 		Stop destinationStop = Database.stops.get(destinationStopString);
 		
-		ArrayList<FastestRouteTimes> possibleRoutes = Database.findPossibleRoutes(startStop, destinationStop);
+		ArrayList<PossibleRoutesTimes> possibleRoutes = Database.findPossibleRoutes(startStop, destinationStop);
 		Collections.sort(possibleRoutes);
 		if(possibleRoutes.size() == 0){
 			Toast.makeText(getApplicationContext(), "No direct route possible.", Toast.LENGTH_LONG).show();
 			finish();
 		}
-		for(FastestRouteTimes frt : possibleRoutes){
+		for(PossibleRoutesTimes frt : possibleRoutes){
 			listDataHeader.add(frt);
 			List<Integer> truncatedWaitTimes = frt.getWaitTimes().subList(0, frt.getTravelTimes().size());
 			listDataChild.put(frt, truncatedWaitTimes);
 		}
 		
-		listAdapter = new FastestRouteExListAdapter(this, listDataHeader, listDataChild);
+		listAdapter = new PossibleRoutesExListAdapter(this, listDataHeader, listDataChild);
 		exListView.setAdapter(listAdapter);
 		
 		if(listAdapter.getGroupCount() <= 3){
