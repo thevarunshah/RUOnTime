@@ -12,42 +12,34 @@
         android:id="@+id/startStopText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Choose Starting Stop:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Spinner
         android:id="@+id/startStop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/blankSpace1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" " />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/destinationStopText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Choose Destination Stop:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Spinner
         android:id="@+id/destinationStop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/blankSpace2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" " />
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/findPossibleRoutes"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:text="Find Possible Routes!" />
 
 </LinearLayout>

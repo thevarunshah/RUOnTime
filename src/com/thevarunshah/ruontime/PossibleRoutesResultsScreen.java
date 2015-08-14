@@ -8,7 +8,6 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.Window;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -30,7 +29,6 @@ public class PossibleRoutesResultsScreen extends Activity {
 			StrictMode.setThreadPolicy(policy);
 		}
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.possible_routes_results_screen);
 		
 		String startStopString = getIntent().getBundleExtra("bundle").getString("startStop");
@@ -47,7 +45,7 @@ public class PossibleRoutesResultsScreen extends Activity {
 		ArrayList<PossibleRoutesTimes> possibleRoutes = Database.findPossibleRoutes(startStop, destinationStop);
 		Collections.sort(possibleRoutes);
 		if(possibleRoutes.size() == 0){
-			Toast.makeText(getApplicationContext(), "No direct route possible.", Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), "No direct routes possible.", Toast.LENGTH_LONG).show();
 			finish();
 		}
 		for(PossibleRoutesTimes frt : possibleRoutes){
