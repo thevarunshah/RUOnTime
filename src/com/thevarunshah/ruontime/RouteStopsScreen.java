@@ -9,6 +9,7 @@ import java.util.TimerTask;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
@@ -36,6 +37,7 @@ public class RouteStopsScreen extends Activity {
 		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.route_stops_screen);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		resuming = false;
 		
 		routeId = getIntent().getBundleExtra("bundle").getString("routeId");
@@ -166,5 +168,15 @@ public class RouteStopsScreen extends Activity {
 			}
 			
 		}, 0, 30000);
+    }
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

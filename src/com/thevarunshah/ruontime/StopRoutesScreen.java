@@ -10,6 +10,7 @@ import java.util.TimerTask;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -35,6 +36,7 @@ public class StopRoutesScreen extends Activity {
 		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stop_routes_screen);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		resuming = false;
 		
 		stopName = getIntent().getBundleExtra("bundle").getString("stopName");
@@ -165,5 +167,15 @@ public class StopRoutesScreen extends Activity {
 			}
 			
 		}, 0, 30000);
+    }
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

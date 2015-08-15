@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -27,6 +28,7 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.possible_routes_selection_screen);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		ArrayList<Stop> activeStops = Database.findActiveStops();
 		if(activeStops.size() == 0){
@@ -66,5 +68,15 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 			}
 		}
 	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 	
 }

@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -29,6 +30,7 @@ public class RoutesScreen extends Activity {
 		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.routes_screen);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		activeRoutes = new ArrayList<Route>();
 		activeRoutes = Database.findActiveRoutes();
@@ -62,4 +64,14 @@ public class RoutesScreen extends Activity {
 			}
 		});
 	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

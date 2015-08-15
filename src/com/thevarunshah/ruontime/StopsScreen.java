@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -42,6 +43,7 @@ public class StopsScreen extends Activity {
 		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stops_screen);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		activeStops = Database.findActiveStops();
 		if(activeStops.size() == 0){
@@ -126,5 +128,15 @@ public class StopsScreen extends Activity {
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) { }
 		});
 	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.MenuItem;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class PossibleRoutesResultsScreen extends Activity {
 		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.possible_routes_results_screen);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		String startStopString = getIntent().getBundleExtra("bundle").getString("startStop");
 		String destinationStopString = getIntent().getBundleExtra("bundle").getString("destinationStop");
@@ -63,5 +65,15 @@ public class PossibleRoutesResultsScreen extends Activity {
 			}
 		}
 	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
