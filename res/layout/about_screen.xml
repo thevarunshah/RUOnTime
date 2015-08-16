@@ -8,32 +8,43 @@
         android:id="@+id/app_creator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_gravity="center"
+        android:padding="20dp"
         android:text="App created by: Varun Shah"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray" />
 
     <TextView
         android:id="@+id/rudots_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text=""
+        android:text="More bus information: RUDOTS"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
     
     <TextView
         android:id="@+id/next_bus_credit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Bus information from the NextBus API"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:text="*Information about busses obtained from the NextBus API"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <TextView
         android:id="@+id/rutgers_credit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Rutgers images/logos copyright of Rutgers Univeristy"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:text="*Images containing 'RU' or 'Rutgers' owned by Rutgers Univeristy"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>

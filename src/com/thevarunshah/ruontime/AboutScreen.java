@@ -21,7 +21,7 @@ public class AboutScreen extends Activity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		TextView tv = (TextView) findViewById(R.id.rudots_link);
-	    tv.setText(Html.fromHtml("<a href=http://rudots.rutgers.edu/campusbuses.shtml>Click here to find more bus information</a>"));
+	    tv.setText(Html.fromHtml("To view bus route maps and more information about busses, vsit <a href=http://rudots.rutgers.edu/campusbuses.shtml>RU DOTS</a>"));
 	    tv.setMovementMethod(LinkMovementMethod.getInstance());
 	}
 	
