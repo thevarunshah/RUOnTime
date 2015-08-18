@@ -23,6 +23,10 @@ public class AboutScreen extends Activity {
 		TextView tv = (TextView) findViewById(R.id.rudots_link);
 	    tv.setText(Html.fromHtml("To view bus route maps and more information about busses, vsit <a href=http://rudots.rutgers.edu/campusbuses.shtml>RU DOTS</a>"));
 	    tv.setMovementMethod(LinkMovementMethod.getInstance());
+	    
+	    TextView email = (TextView) findViewById(R.id.email);
+	    email.setText(Html.fromHtml("Bugs/Comments? <a href=\"mailto:varun.shah@rutgers.edu\">Email me!</a>"));
+	    email.setMovementMethod(LinkMovementMethod.getInstance());
 	}
 	
 	@Override
