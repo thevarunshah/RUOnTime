@@ -6,12 +6,18 @@
     android:padding="8dp"
     android:background="#ff0000">
  
- 
     <TextView
         android:id="@+id/routeStopsListHeader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="21sp"
+        android:textColor="#ffffff" />
+    
+    <TextView
+        android:id="@+id/routeStopsListArriving"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
         android:textColor="#ffffff" />
  
 </LinearLayout>

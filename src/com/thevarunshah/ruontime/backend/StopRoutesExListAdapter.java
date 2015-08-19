@@ -99,6 +99,65 @@ public class StopRoutesExListAdapter extends BaseExpandableListAdapter {
         TextView lblListHeader = (TextView) convertView.findViewById(R.id.stopRoutesListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
+        
+        String arrivingIn = "Arriving in ";
+        Integer time1 = header.getTimes().get(0);
+        Integer time2 = 0;
+        Integer time3 = 0;
+        if(header.getTimes().size() > 1){
+        	time2 = header.getTimes().get(1);
+        }
+        if(header.getTimes().size() > 2){
+        	time3 = header.getTimes().get(2);
+        }
+        if(header.getTimes().size() >= 3){
+        	if(time1.equals(0)){
+        		arrivingIn += "<1, ";
+        	}
+        	else{
+        		arrivingIn += time1 + ", ";
+        	}
+        	if(time2.equals(0)){
+        		arrivingIn += "<1, and ";
+        	}
+        	else{
+        		arrivingIn += time2 + ", and ";
+        	}
+        	if(time3.equals(0)){
+        		arrivingIn += "<1 minute";
+        	}
+        	else{
+        		arrivingIn += time3 + " minutes";
+        	}
+        }
+        else if(header.getTimes().size() >= 2){
+        	if(time1.equals(0)){
+        		arrivingIn += "<1 and ";
+        	}
+        	else{
+        		arrivingIn += time1 + " and ";
+        	}
+        	if(time2.equals(0)){
+        		arrivingIn += "<1 minute";
+        	}
+        	else{
+        		arrivingIn += time2 + " minutes";
+        	}
+        }
+        else if(header.getTimes().size() >= 1){
+        	if(time1.equals(0)){
+        		arrivingIn += "<1 minute";
+        	}
+        	else if(time1.equals(1)){
+        		arrivingIn += "1 minute";
+        	}
+        	else{
+        		arrivingIn += time1 + " minutes";
+        	}
+        }
+        
+        TextView lblListArriving = (TextView) convertView.findViewById(R.id.stopRoutesListArriving);
+        lblListArriving.setText(arrivingIn);
  
         return convertView;
     }
