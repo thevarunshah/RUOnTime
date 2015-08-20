@@ -3,6 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f5f5f5"
     tools:context="com.thevarunshah.ruontime.HomeScreen"
     tools:ignore="MergeRootFrame" >
 
@@ -15,77 +16,84 @@
         <ImageView
             android:id="@+id/ruontime_logo"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="250dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="25dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
-            android:layout_weight="1"
             android:src="@drawable/title" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="vertical" >
+            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/viewRoutes"
                 style="@android:style/Widget.Holo.Light.Button"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:drawableLeft="@drawable/ic_directions_bus_black_24dp"
-                android:drawablePadding="20dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_directions_bus_black_48dp"
+                android:drawablePadding="5dp"
                 android:padding="20dp"
-                android:text="View Routes"
+                android:text="Routes"
                 android:textColor="@android:color/black" />
 
             <Button
                 android:id="@+id/viewStops"
                 style="@android:style/Widget.Holo.Light.Button"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:drawableLeft="@drawable/ic_pin_drop_black_24dp"
-                android:drawablePadding="20dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_pin_drop_black_48dp"
+                android:drawablePadding="5dp"
                 android:padding="20dp"
-                android:text="View Stops"
+                android:text="Stops"
                 android:textColor="@android:color/black" />
             
             <Button
                 android:id="@+id/favorites"
                 style="@android:style/Widget.Holo.Light.Button"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:drawableLeft="@drawable/ic_star_black_24dp"
-                android:drawablePadding="20dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_star_black_48dp"
+                android:drawablePadding="5dp"
                 android:padding="20dp"
-                android:text="Favorite Routes/Stops"
+                android:text="Favorites"
                 android:textColor="@android:color/black" />
+
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/possibleRoute"
                 style="@android:style/Widget.Holo.Light.Button"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:drawableLeft="@drawable/ic_directions_black_24dp"
-                android:drawablePadding="20dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_directions_black_48dp"
+                android:drawablePadding="5dp"
                 android:padding="20dp"
-                android:text="Find Possible Routes"
+                android:text="Possible\nRoutes"
                 android:textColor="@android:color/black" />
 
             <Button
                 android:id="@+id/about"
                 style="@android:style/Widget.Holo.Light.Button"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:drawableLeft="@drawable/ic_info_black_24dp"
-                android:drawablePadding="20dp"
+                android:background="@android:color/transparent"
+                android:drawableTop="@drawable/ic_info_black_48dp"
+                android:drawablePadding="5dp"
                 android:padding="20dp"
                 android:text="About"
                 android:textColor="@android:color/black" />
