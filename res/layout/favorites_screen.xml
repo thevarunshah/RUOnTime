@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/favorites_screen_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/favorite_routes_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Favorite Routes"
+        android:textSize="20dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:padding="10dp" />
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"/>
+
+    <ListView
+        android:id="@+id/favorite_routes_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="5dp" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/favorite_stops_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Favorite Stops"
+        android:textSize="20dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:padding="10dp" />
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"/>
+    
+    <ListView
+        android:id="@+id/favorite_stops_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="5dp" >
+    </ListView>
+
+</LinearLayout>

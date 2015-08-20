@@ -4,6 +4,7 @@
     <string name="app_name">RU On Time?</string>
     <string name="routes">Routes</string>
     <string name="stops">Stops</string>
+    <string name="favorites">Favorites</string>
     <string name="possible_routes_selection">Select Stops</string>
     <string name="possible_routes">Possible Routes</string>
     <string name="about">About</string>

@@ -39,6 +39,10 @@
             android:label="@string/stops" >
         </activity>
         <activity
+            android:name="com.thevarunshah.ruontime.FavoritesScreen"
+            android:label="@string/favorites" >
+        </activity>
+        <activity
             android:name="com.thevarunshah.ruontime.StopRoutesScreen"
             android:label="@string/app_name" >
         </activity>

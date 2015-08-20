@@ -30,6 +30,8 @@ public class HomeScreen extends Activity implements OnClickListener {
 		viewRoutes.setOnClickListener(this);
 		Button viewStops = (Button) findViewById(R.id.viewStops);
 		viewStops.setOnClickListener(this);
+		Button favorites = (Button) findViewById(R.id.favorites);
+		favorites.setOnClickListener(this);
 		Button fastestRoute = (Button) findViewById(R.id.possibleRoute);
 		fastestRoute.setOnClickListener(this);
 		Button about = (Button) findViewById(R.id.about);
@@ -47,6 +49,11 @@ public class HomeScreen extends Activity implements OnClickListener {
 			}
 			case R.id.viewStops:{
 				Intent i = new Intent(HomeScreen.this, StopsScreen.class);
+				startActivity(i);
+				break;
+			}
+			case R.id.favorites:{
+				Intent i = new Intent(HomeScreen.this, FavoritesScreen.class);
 				startActivity(i);
 				break;
 			}
