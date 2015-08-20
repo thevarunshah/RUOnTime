@@ -54,7 +54,7 @@ public class FavoritesScreen extends Activity{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				
-				Route selectedRoute = aaRoutes.getItem(position-1);
+				Route selectedRoute = aaRoutes.getItem(position);
 				Intent i = new Intent(FavoritesScreen.this, RouteStopsScreen.class);
 				Bundle extra = new Bundle();
 				extra.putString("routeId", selectedRoute.getId());
@@ -70,7 +70,7 @@ public class FavoritesScreen extends Activity{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				
-				Stop selectedStop = aaStops.getItem(position-1);
+				Stop selectedStop = aaStops.getItem(position);
 				Intent i = new Intent(FavoritesScreen.this, StopRoutesScreen.class);
 				Bundle extra = new Bundle();
 				extra.putString("stopName", selectedStop.getName());
