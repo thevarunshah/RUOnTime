@@ -9,6 +9,8 @@ import java.util.TimerTask;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,8 @@ public class RouteStopsScreen extends Activity {
 	ExpandableListView exListView;
 	ExpandableListAdapter listAdapter;
 	boolean resuming;
+	boolean favorite;
+	Route r = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,9 @@ public class RouteStopsScreen extends Activity {
 		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.route_stops_screen);
+		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		resuming = false;
 		
 		routeId = getIntent().getBundleExtra("bundle").getString("routeId");
@@ -56,8 +62,9 @@ public class RouteStopsScreen extends Activity {
 		List<StopTimes> listDataHeader = new ArrayList<StopTimes>();
 		HashMap<StopTimes, List<Integer>> listDataChild = new HashMap<StopTimes, List<Integer>>();
 		
-		Route r = Database.routes.get(routeId);
+		r = Database.routes.get(routeId);
 		setTitle(r.getName() + " Route");
+		
 		ArrayList<StopTimes> routeStopTimes = Database.findStopsForRoute(r);
 		for(StopTimes st : routeStopTimes){
 			listDataHeader.add(st);
@@ -169,13 +176,43 @@ public class RouteStopsScreen extends Activity {
 			
 		}, 0, 30000);
     }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.route_stops_screen, menu);
+        
+		if(Database.favoriteRoutes.contains(r)){
+			menu.findItem(R.id.RSfavorite).setIcon(R.drawable.ic_star_white_24dp);
+			favorite = true;
+		}
+		else{
+			menu.findItem(R.id.RSfavorite).setIcon(R.drawable.ic_star_border_white_24dp);
+			favorite = false;
+		}
+        
+        return super.onCreateOptionsMenu(menu);
+    }
 	
 	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
-            this.finish();
-            return true;
+        	case R.id.RSfavorite:
+        		if(!favorite){
+        			item.setIcon(R.drawable.ic_star_white_24dp);
+        			Database.favoriteRoutes.add(r);
+        		}
+        		else{
+        			item.setIcon(R.drawable.ic_star_border_white_24dp);
+        			Database.favoriteRoutes.remove(r);
+        		}
+        		favorite = !favorite;
+        		return true;
+	        case android.R.id.home:
+	            this.finish();
+	            return true;
         }
         return super.onOptionsItemSelected(item);
     }

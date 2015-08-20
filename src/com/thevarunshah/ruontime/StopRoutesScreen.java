@@ -10,6 +10,8 @@ import java.util.TimerTask;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
@@ -27,6 +29,8 @@ public class StopRoutesScreen extends Activity {
 	ExpandableListView exListView;
 	ExpandableListAdapter listAdapter;
 	boolean resuming;
+	boolean favorite;
+	Stop s = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +50,9 @@ public class StopRoutesScreen extends Activity {
 		List<RouteTimes> listDataHeader = new ArrayList<RouteTimes>();
 		HashMap<RouteTimes, List<Integer>> listDataChild = new HashMap<RouteTimes, List<Integer>>();
 		
-		Stop s = Database.stops.get(stopName);
+		s = Database.stops.get(stopName);
 		setTitle(s.getName() + " Stop");
+		
 		ArrayList<RouteTimes> stopRouteTimes = Database.findRoutesforStop(s);
 		Collections.sort(stopRouteTimes);
 		for(RouteTimes rt : stopRouteTimes){
@@ -168,14 +173,44 @@ public class StopRoutesScreen extends Activity {
 			
 		}, 0, 30000);
     }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.stop_routes_screen, menu);
+        
+		if(Database.favoriteStops.contains(s)){
+			menu.findItem(R.id.SRfavorite).setIcon(R.drawable.ic_star_white_24dp);
+			favorite = true;
+		}
+		else{
+			menu.findItem(R.id.SRfavorite).setIcon(R.drawable.ic_star_border_white_24dp);
+			favorite = false;
+		}
+        
+        return super.onCreateOptionsMenu(menu);
+    }
 	
 	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
-            this.finish();
-            return true;
-        }
+	        case R.id.SRfavorite:
+	    		if(!favorite){
+	    			item.setIcon(R.drawable.ic_star_white_24dp);
+	    			Database.favoriteStops.add(s);
+	    		}
+	    		else{
+	    			item.setIcon(R.drawable.ic_star_border_white_24dp);
+	    			Database.favoriteStops.remove(s);
+	    		}
+	    		favorite = !favorite;
+	    		return true;
+	        case android.R.id.home:
+	            this.finish();
+	            return true;
+	        }
         return super.onOptionsItemSelected(item);
     }
 }

@@ -53,6 +53,18 @@
                 android:padding="20dp"
                 android:text="View Stops"
                 android:textColor="@android:color/black" />
+            
+            <Button
+                android:id="@+id/favorites"
+                style="@android:style/Widget.Holo.Light.Button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableLeft="@drawable/ic_star_black_24dp"
+                android:drawablePadding="20dp"
+                android:padding="20dp"
+                android:text="Favorite Routes/Stops"
+                android:textColor="@android:color/black" />
 
             <Button
                 android:id="@+id/possibleRoute"

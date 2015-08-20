@@ -32,6 +32,8 @@ public class Database {
 	
 	public static HashMap<String, Route> routes = new HashMap<String, Route>();
 	public static HashMap<String, Stop> stops = new HashMap<String, Stop>();
+	public static ArrayList<Route> favoriteRoutes = new ArrayList<Route>();
+	public static ArrayList<Stop> favoriteStops = new ArrayList<Stop>();
 	/*
 	public static void main(String[] args) {
 		
