@@ -1,5 +1,7 @@
 package com.thevarunshah.ruontime;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -12,6 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.thevarunshah.ruontime.backend.Database;
 import com.thevarunshah.ruontime.backend.Route;
@@ -54,7 +57,13 @@ public class FavoritesScreen extends Activity{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				
+				ArrayList<Route> activeRoutes = Database.findActiveRoutes();
 				Route selectedRoute = aaRoutes.getItem(position);
+				if(!activeRoutes.contains(selectedRoute)){
+					Toast.makeText(getApplicationContext(), "Route is not active.", Toast.LENGTH_LONG).show();
+					return;
+				}
+				
 				Intent i = new Intent(FavoritesScreen.this, RouteStopsScreen.class);
 				Bundle extra = new Bundle();
 				extra.putString("routeId", selectedRoute.getId());
@@ -70,7 +79,13 @@ public class FavoritesScreen extends Activity{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				
+				ArrayList<Stop> activeStops = Database.findActiveStops();
 				Stop selectedStop = aaStops.getItem(position);
+				if(!activeStops.contains(selectedStop)){
+					Toast.makeText(getApplicationContext(), "Stop is not active.", Toast.LENGTH_LONG).show();
+					return;
+				}
+				
 				Intent i = new Intent(FavoritesScreen.this, StopRoutesScreen.class);
 				Bundle extra = new Bundle();
 				extra.putString("stopName", selectedStop.getName());
