@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.thevarunshah.ruontime.backend.Database;
 import com.thevarunshah.ruontime.backend.Route;
@@ -203,10 +204,12 @@ public class RouteStopsScreen extends Activity {
         		if(!favorite){
         			item.setIcon(R.drawable.ic_star_white_24dp);
         			Database.favoriteRoutes.add(r);
+        			Toast.makeText(getApplicationContext(), "Route added to favorites!", Toast.LENGTH_SHORT).show();
         		}
         		else{
         			item.setIcon(R.drawable.ic_star_border_white_24dp);
         			Database.favoriteRoutes.remove(r);
+        			Toast.makeText(getApplicationContext(), "Route removed from favorites.", Toast.LENGTH_SHORT).show();
         		}
     			Database.backupFavorites(getApplicationContext());
         		favorite = !favorite;
