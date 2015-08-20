@@ -208,6 +208,7 @@ public class RouteStopsScreen extends Activity {
         			item.setIcon(R.drawable.ic_star_border_white_24dp);
         			Database.favoriteRoutes.remove(r);
         		}
+    			Database.backupFavorites(getApplicationContext());
         		favorite = !favorite;
         		return true;
 	        case android.R.id.home:

@@ -1,10 +1,12 @@
 package com.thevarunshah.ruontime.backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Route implements Comparable<Route>{
+public class Route implements Comparable<Route>, Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String name;
 	private String path;

@@ -2,8 +2,12 @@ package com.thevarunshah.ruontime.backend;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -20,6 +24,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import android.content.Context;
 import android.util.Log;
 
 public class Database {
@@ -625,6 +630,48 @@ public class Database {
 		}
 		
 		return stopTimes;
+	}
+	
+	public static void backupFavorites(Context context){
+		
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		try {
+			fos = context.openFileOutput("favorites_backup.ser", Context.MODE_PRIVATE);
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(favoriteRoutes);
+			oos.writeObject(favoriteStops);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			try{
+				oos.close();
+				fos.close();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void readFavorites(Context context){
+		
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		try {
+			fis = context.openFileInput("favorites_backup.ser");
+			ois = new ObjectInputStream(fis);
+			Database.favoriteRoutes = (ArrayList<Route>)ois.readObject();
+			Database.favoriteStops = (ArrayList<Stop>)ois.readObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			try{
+				if(ois != null) ois.close();
+				if(fis != null) fis.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private static String HttpGet(String url){

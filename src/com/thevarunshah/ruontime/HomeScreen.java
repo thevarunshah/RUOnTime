@@ -23,6 +23,8 @@ public class HomeScreen extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.home_screen);
+		
+		Database.readFavorites(getApplicationContext());
 
 		Button viewRoutes = (Button) findViewById(R.id.viewRoutes);
 		viewRoutes.setOnClickListener(this);

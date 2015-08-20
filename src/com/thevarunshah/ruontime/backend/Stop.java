@@ -1,11 +1,13 @@
 package com.thevarunshah.ruontime.backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class Stop implements Comparable<Stop> {
+public class Stop implements Comparable<Stop>, Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private double lat;
 	private double lon;
