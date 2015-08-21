@@ -8,8 +8,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,7 +45,14 @@ public class StopRoutesScreen extends Activity {
 		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stop_routes_screen);
+		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#dd4b39")));
+		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+		if(Build.VERSION.SDK_INT >= 18){
+			getActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+		}
+		setTitle(Html.fromHtml("<b>"+getTitle()+"</b>"));
 		resuming = false;
 		
 		stopName = getIntent().getBundleExtra("bundle").getString("stopName");

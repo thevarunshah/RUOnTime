@@ -4,8 +4,12 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,7 +32,14 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.possible_routes_selection_screen);
+		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#dd4b39")));
+		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+		if(Build.VERSION.SDK_INT >= 18){
+			getActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+		}
+		setTitle(Html.fromHtml("<b>"+getTitle()+"</b>"));
 		
 		ArrayList<Stop> activeStops = Database.findActiveStops();
 		if(activeStops.size() == 0){

@@ -3,6 +3,8 @@ package com.thevarunshah.ruontime.backend;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import android.text.Html;
+
 
 public class Route implements Comparable<Route>, Serializable{
 
@@ -37,22 +39,22 @@ public class Route implements Comparable<Route>, Serializable{
 	private void setPath(String id){
 		
 		switch(id){
-			case "a": this.path = "Busch <--> College Ave"; break;
-			case "b": this.path = "Busch <--> Livingston"; break;
+			case "a": this.path = Html.fromHtml("Busch &#8646; College Ave").toString(); break;
+			case "b": this.path = Html.fromHtml("Busch &#8646; Livingston").toString(); break;
 			case "c": this.path = "Commuter Loop (Busch)"; break;
-			case "ee": this.path = "College Ave <--> Cook/Douglass"; break;
-			case "f": this.path = "College Ave <--> Cook/Douglass (Express)"; break;
-			case "h": this.path = "College Ave <--> Busch"; break;
-			case "lx": this.path = "Livingston <--> College Ave"; break;
-			case "rexb": this.path = "Cook/Douglass <--> Busch"; break;
-			case "rexl": this.path = "Cook/Douglass <--> Livingston"; break;
-			case "s": this.path = "College Ave --> Busch --> Livingston --> Cook/Douglass"; break;
-			case "w1": this.path = "New Brunswick <--> College Ave"; break;
-			case "w2": this.path = "College Ave <--> New Brunswick"; break;
-			case "wknd1": this.path = "College Ave --> Busch --> Livingston --> Cook/Douglass"; break;
-			case "wknd2": this.path = "College Ave --> Cook/Douglass --> Livingston --> Busch"; break;
-			case "rbhs": this.path = "RBHS <--> RWJ"; break;
-			default: this.path = "unknown"; break;
+			case "ee": this.path = Html.fromHtml("College Ave &#8646; Cook/Douglass").toString(); break;
+			case "f": this.path = Html.fromHtml("College Ave &#8646; Cook/Douglass (Express)").toString(); break;
+			case "h": this.path = Html.fromHtml("College Ave &#8646; Busch").toString(); break;
+			case "lx": this.path = Html.fromHtml("Livingston &#8646; College Ave").toString(); break;
+			case "rexb": this.path = Html.fromHtml("Cook/Douglass &#8646; Busch").toString(); break;
+			case "rexl": this.path = Html.fromHtml("Cook/Douglass &#8646; Livingston").toString(); break;
+			case "s": this.path = Html.fromHtml("College Ave &#8594; Busch &#8594; Livingston &#8594; Cook/Douglass").toString(); break;
+			case "w1": this.path = Html.fromHtml("New Brunswick &#8646; College Ave").toString(); break;
+			case "w2": this.path = Html.fromHtml("College Ave &#8646; New Brunswick").toString(); break;
+			case "wknd1": this.path = Html.fromHtml("College Ave &#8594; Busch &#8594; Livingston &#8594; Cook/Douglass").toString(); break;
+			case "wknd2": this.path = Html.fromHtml("College Ave &#8594; Cook/Douglass &#8594; Livingston &#8594; Busch").toString(); break;
+			case "rbhs": this.path = Html.fromHtml("RBHS &#8646; RWJ").toString(); break;
+			default: this.path = "Unknown Path"; break;
 		}
 	}
 	

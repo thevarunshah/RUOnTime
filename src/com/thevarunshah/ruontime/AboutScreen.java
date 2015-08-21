@@ -1,6 +1,9 @@
 package com.thevarunshah.ruontime;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.text.Html;
@@ -18,7 +21,14 @@ public class AboutScreen extends Activity {
 		}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.about_screen);
+		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#dd4b39")));
+		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+		if(Build.VERSION.SDK_INT >= 18){
+			getActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+		}
+		setTitle(Html.fromHtml("<b>"+getTitle()+"</b>"));
 		
 		TextView tv = (TextView) findViewById(R.id.rudots_link);
 	    tv.setText(Html.fromHtml("To view bus route maps and more information about busses, vsit <a href=http://rudots.rutgers.edu/campusbuses.shtml>RU DOTS</a>"));
