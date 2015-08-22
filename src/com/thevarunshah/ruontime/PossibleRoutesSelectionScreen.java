@@ -49,12 +49,13 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 		startStop = (Spinner) findViewById(R.id.startStop);
 		destinationStop = (Spinner) findViewById(R.id.destinationStop);
 		
-		ArrayAdapter<Stop> startStopAdapter = new ArrayAdapter<Stop>(this, android.R.layout.simple_spinner_item, activeStops);
+		ArrayAdapter<Stop> startStopAdapter = new ArrayAdapter<Stop>(this, R.layout.stops_spinner, activeStops);
 		startStopAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		startStop.setAdapter(startStopAdapter);
-		ArrayAdapter<Stop> destinationStopAdapter = new ArrayAdapter<Stop>(this, android.R.layout.simple_spinner_item, activeStops);
+		ArrayAdapter<Stop> destinationStopAdapter = new ArrayAdapter<Stop>(this, R.layout.stops_spinner, activeStops);
 		destinationStopAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		destinationStop.setAdapter(destinationStopAdapter);
+		destinationStop.setSelection(1);
 		
 		Button findPossibleRoutes = (Button) findViewById(R.id.findPossibleRoutes);
 		findPossibleRoutes.setOnClickListener(this);
