@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -155,8 +156,17 @@ public class RouteStopsExListAdapter extends BaseExpandableListAdapter {
         	}
         }
         
+        int arrivingInColor = Color.parseColor("#000099");
+        if(time1.equals(0) || time1.equals(1)){
+    		arrivingInColor = this._context.getResources().getColor(android.R.color.holo_red_dark);
+        }
+        else if(time1.compareTo(5) <= 0){
+    		arrivingInColor = this._context.getResources().getColor(android.R.color.holo_orange_dark);
+        }
+        
         TextView lblListArriving = (TextView) convertView.findViewById(R.id.routeStopsListArriving);
         lblListArriving.setText(arrivingIn);
+        lblListArriving.setTextColor(arrivingInColor);
  
         return convertView;
     }
