@@ -8,6 +8,7 @@ import java.util.List;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,14 +56,15 @@ public class RouteStopsExListAdapter extends BaseExpandableListAdapter {
         timeNow.add(Calendar.MINUTE, childText);
         SimpleDateFormat sdf = new SimpleDateFormat("h:mm a", java.util.Locale.getDefault());
         String formattedTime = sdf.format(timeNow.getTime());
-        if(childText.equals(0))
-        	timeText = "   <1 minute at " + formattedTime;
+        if(childText.equals(0)){
+        	timeText = "<b>&lt;1</b> minute at <b>" + formattedTime + "</b>";
+        }
 		else if(childText.equals(1))
-			timeText = "   1 minute at " + formattedTime;
+			timeText = "<b>1</b> minute at <b>" + formattedTime + "</b>";
 		else
-			timeText = "   " + childText + " minutes at " + formattedTime;
+			timeText = "<b>" + childText + "</b> minutes at <b>" + formattedTime + "</b>";
         
-        txtListChild.setText(timeText);
+        txtListChild.setText(Html.fromHtml(timeText));
         return convertView;
     }
  
