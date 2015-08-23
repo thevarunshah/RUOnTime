@@ -36,6 +36,7 @@ public class RouteStopsScreen extends Activity {
 	ExpandableListAdapter listAdapter;
 	boolean resuming;
 	boolean favorite;
+	boolean favoriteChanged = false;
 	Route r = null;
 	
 	@Override
@@ -211,6 +212,7 @@ public class RouteStopsScreen extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         	case R.id.RSfavorite:
+        		favoriteChanged = true;
         		if(!favorite){
         			item.setIcon(R.drawable.ic_star_white_24dp);
         			Database.favoriteRoutes.add(r);
@@ -224,7 +226,9 @@ public class RouteStopsScreen extends Activity {
         		favorite = !favorite;
         		return true;
 	        case android.R.id.home:
-    			Database.backupFavorites(getApplicationContext());
+	        	if(favoriteChanged){
+	        		Database.backupFavorites(getApplicationContext());
+	        	}
 	            this.finish();
 	            return true;
         }
@@ -234,8 +238,9 @@ public class RouteStopsScreen extends Activity {
 	@Override
 	public void onBackPressed() {
 		
-		Database.backupFavorites(getApplicationContext());
-		
+		if(favoriteChanged){
+			Database.backupFavorites(getApplicationContext());
+		}		
 		super.onBackPressed();
 	}
 }
