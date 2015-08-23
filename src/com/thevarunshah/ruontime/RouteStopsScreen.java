@@ -221,13 +221,21 @@ public class RouteStopsScreen extends Activity {
         			Database.favoriteRoutes.remove(r);
         			Toast.makeText(getApplicationContext(), "Route removed from favorites.", Toast.LENGTH_SHORT).show();
         		}
-    			Database.backupFavorites(getApplicationContext());
         		favorite = !favorite;
         		return true;
 	        case android.R.id.home:
+    			Database.backupFavorites(getApplicationContext());
 	            this.finish();
 	            return true;
         }
         return super.onOptionsItemSelected(item);
     }
+	
+	@Override
+	public void onBackPressed() {
+		
+		Database.backupFavorites(getApplicationContext());
+		
+		super.onBackPressed();
+	}
 }
