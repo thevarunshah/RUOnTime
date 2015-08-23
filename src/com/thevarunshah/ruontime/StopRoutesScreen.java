@@ -67,6 +67,10 @@ public class StopRoutesScreen extends Activity {
 		setTitle(s.getName() + " Stop");
 		
 		ArrayList<RouteTimes> stopRouteTimes = Database.findRoutesforStop(s);
+		if(stopRouteTimes.size() == 0){
+			Toast.makeText(getApplicationContext(), "This route is currently not active.", Toast.LENGTH_LONG).show();
+			finish();
+		}
 		Collections.sort(stopRouteTimes);
 		for(RouteTimes rt : stopRouteTimes){
 			listDataHeader.add(rt);

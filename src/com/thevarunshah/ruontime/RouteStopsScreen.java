@@ -78,6 +78,10 @@ public class RouteStopsScreen extends Activity {
 		setTitle(r.getName() + " Route");
 		
 		ArrayList<StopTimes> routeStopTimes = Database.findStopsForRoute(r);
+		if(routeStopTimes.size() == 0){
+			Toast.makeText(getApplicationContext(), "This stop is currently not active.", Toast.LENGTH_LONG).show();
+			finish();
+		}
 		for(StopTimes st : routeStopTimes){
 			listDataHeader.add(st);
 			listDataChild.put(st, st.getTimes());

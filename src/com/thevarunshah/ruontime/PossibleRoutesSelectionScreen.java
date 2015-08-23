@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.thevarunshah.ruontime.backend.Database;
 import com.thevarunshah.ruontime.backend.Stop;
@@ -43,7 +44,8 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 		
 		ArrayList<Stop> activeStops = Database.findActiveStops();
 		if(activeStops.size() == 0){
-			activeStops.add(new Stop("none", "no active stops", 0, 0));
+			Toast.makeText(getApplicationContext(), "Unable to find possible routes - no stops are currently active.", Toast.LENGTH_LONG).show();
+			finish();
 		}
 		
 		startStop = (Spinner) findViewById(R.id.startStop);
