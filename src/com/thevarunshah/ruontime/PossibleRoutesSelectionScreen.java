@@ -44,7 +44,7 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 		
 		ArrayList<Stop> activeStops = Database.findActiveStops();
 		if(activeStops.size() == 0){
-			Toast.makeText(getApplicationContext(), "Unable to find possible routes - no stops are currently active.", Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), "Unable to find direct routes - no stops are currently active.", Toast.LENGTH_LONG).show();
 			finish();
 		}
 		
@@ -70,8 +70,10 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 			case R.id.findPossibleRoutes: {
 				Stop start = (Stop) startStop.getSelectedItem();
 				Stop destination = (Stop) destinationStop.getSelectedItem();
-				//Toast.makeText(FastestRouteSelectionScreen.this, "calculating possible routes from " + startStop.getSelectedItem() + 
-				//                " to " + destinationStop.getSelectedItem(), Toast.LENGTH_SHORT).show();
+				if(start.equals(destination)){
+					Toast.makeText(getApplicationContext(), "The destination cannot be the same as the starting stop.", Toast.LENGTH_SHORT).show();
+					break;
+				}
 				Intent i = new Intent(PossibleRoutesSelectionScreen.this, PossibleRoutesResultsScreen.class);
 				Bundle extra = new Bundle();
 				extra.putString("startStop", start.getName());
