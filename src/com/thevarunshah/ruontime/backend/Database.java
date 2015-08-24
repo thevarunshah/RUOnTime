@@ -468,6 +468,87 @@ public class Database {
 		return stopRouteTimes;
 	}
 	
+	public static ArrayList<StopTimes> findStopsForPossibleRoutes(Route r, Stop start, Stop end){
+		
+		ArrayList<String> stopsOrder = new ArrayList<String>();
+		String startID = "";
+		String endID = "";
+		String routeStops = "predictionsForMultiStops";
+		for(Stop s : routes.get(r.getId()).getStops()){
+			if(s.equals(start)){
+				String currStop = s.getIdsToRoutesMap().keySet().iterator().next();
+				routeStops += "&stops=" + r.getId() + "%7C" + currStop;
+				startID = currStop;
+			}
+			else if(s.equals(end)){
+				String currStop = s.getIdsToRoutesMap().keySet().iterator().next();
+				routeStops += "&stops=" + r.getId() + "%7C" + currStop;
+				endID = currStop;
+			}
+		}
+		stopsOrder.add(startID);
+		stopsOrder.add(endID);
+		
+		ArrayList<StopTimes> routeStopTimes = new ArrayList<StopTimes>();
+		String xml = HttpGet(nextBusBaseURL + routeStops);
+		try{
+		    InputSource is = new InputSource(new StringReader(xml));
+		    Document doc = builder.parse(is);
+		    doc.getDocumentElement().normalize();
+			
+			NodeList body = doc.getChildNodes();
+		    NodeList predictions = body.item(0).getChildNodes();
+		    for(int i = 0; i < predictions.getLength(); i++){
+		    	
+		    	Node stop = predictions.item(i);
+		    	if(stop.getNodeName().equals("predictions") && stop.getNodeType() == Node.ELEMENT_NODE){
+		    		
+		    		Element stopElement = (Element) stop;
+		    		
+		    		NodeList direction = stopElement.getChildNodes();
+		    		if(direction.item(1) == null)
+		    			continue;
+		    		NodeList times = direction.item(1).getChildNodes();
+		    		ArrayList<Integer> stopTimes = new ArrayList<Integer>();
+		    		ArrayList<Integer> stopTimesInSeconds = new ArrayList<Integer>();
+		    		ArrayList<Integer> vehicleIDs = new ArrayList<Integer>();
+		    		for(int j = 0; j < times.getLength(); j++){
+		    			
+		    			Node time = times.item(j);
+		    			if(time.getNodeName().equals("prediction") && time.getNodeType() == Node.ELEMENT_NODE){
+		    				
+		    				Element timeElement = (Element) time;
+		    				stopTimes.add(Integer.parseInt(timeElement.getAttribute("minutes")));
+		    				stopTimesInSeconds.add(Integer.parseInt(timeElement.getAttribute("seconds")));
+		    				vehicleIDs.add(Integer.parseInt(timeElement.getAttribute("vehicle")));
+		    			}
+		    		}
+		    		
+		    		StopTimes st = new StopTimes(stopElement.getAttribute("stopTag"), stopElement.getAttribute("stopTitle"));
+		    		st.setTimes(stopTimes);
+		    		st.setTimesInSeconds(stopTimesInSeconds);
+		    		st.setVehicleIDs(vehicleIDs);
+		    		routeStopTimes.add(st);
+		    	}
+		    }
+		    
+		}catch (Exception e){
+			System.out.println("exception: " + e);
+		}
+		
+		ArrayList<StopTimes> routeStopTimesFinal = new ArrayList<StopTimes>();
+		for(String stopId : stopsOrder){
+			for(StopTimes st : routeStopTimes){
+				if(st.getId().equals(stopId)){
+					routeStopTimesFinal.add(st);
+					break;
+				}
+			}
+		}
+		
+		return routeStopTimesFinal;
+	}
+	
 	public static ArrayList<PossibleRoutesTimes> findPossibleRoutes(Stop startStop, Stop destinationStop){
 		
 		ArrayList<PossibleRoutesTimes> possibleRoutes = new ArrayList<PossibleRoutesTimes>();
@@ -488,52 +569,24 @@ public class Database {
 		for(Route route : possibleDirectRoutes){
 			
 			PossibleRoutesTimes currentRoute = new PossibleRoutesTimes(route.getId());
-			ArrayList<StopTimes> stopTimes = findStopsForRoute(route);
+			ArrayList<StopTimes> stopTimes = findStopsForPossibleRoutes(route, startStop, destinationStop);
 			
-			int startTime = -1;
-			int destinationTime = -1;
-			boolean startFound = false;
-			boolean destinationFound = false;
+			int startTime = stopTimes.get(0).getTimesInSeconds().get(0);
+			currentRoute.setWaitTimes(stopTimes.get(0).getTimes());
+			int vehicleID = stopTimes.get(0).getVehicleIDs().get(0);
 			
-			for(int i = 0; i < stopTimes.size(); i++){
-				
-				StopTimes stopTime = stopTimes.get(i);
-				ArrayList<Integer> stopTimeTimes = stopTime.getTimes();
-				
-				if(!startFound && stopTime.getName().equals(startStop.getName())){
-					startFound = true;
-					startTime = stopTimeTimes.get(0);
-					currentRoute.setWaitTimes(stopTimeTimes);
-				}
-				else if(!startFound){
-					continue;
-				}
-				else if(startFound && !destinationFound && stopTime.getName().equals(destinationStop.getName())){
-					destinationFound = true;
-					for(Integer time : stopTimeTimes){
-						if(time > startTime && time > destinationTime){
-							int copyFrom = stopTimeTimes.indexOf(time);
-							for(int j = copyFrom; j < stopTimeTimes.size(); j++){
-								currentRoute.getTravelTimes().add(stopTimeTimes.get(j));
-							}
-							destinationTime = time;
-							break;
-						}
+			ArrayList<Integer> destinationTimes = stopTimes.get(1).getTimesInSeconds();
+			for(int i = 0; i < destinationTimes.size(); i++){
+				int time = destinationTimes.get(i);
+				int vehicleID2 = stopTimes.get(1).getVehicleIDs().get(i);
+				if(time > startTime && vehicleID == vehicleID2){
+					for(int j = i; j < stopTimes.get(1).getTimes().size(); j++){
+						currentRoute.getTravelTimes().add(stopTimes.get(1).getTimes().get(j));
 					}
 					break;
 				}
-				else if(startFound && !destinationFound){
-					for(Integer time : stopTimeTimes){
-						if(time > startTime && time > destinationTime){
-							destinationTime = time;
-							break;
-						}
-					}
-					if((i+1) == stopTimes.size()){
-						i = -1;
-					}
-				}
 			}
+			
 			possibleRoutes.add(currentRoute);
 		}
 		
