@@ -36,8 +36,8 @@ public final class R {
         public static final int title=0x7f02000b;
     }
     public static final class id {
-        public static final int RSfavorite=0x7f080026;
-        public static final int SRfavorite=0x7f080027;
+        public static final int RSfavorite=0x7f080027;
+        public static final int SRfavorite=0x7f080028;
         public static final int about=0x7f080010;
         public static final int app_creator=0x7f080000;
         public static final int container=0x7f08000a;
@@ -50,7 +50,7 @@ public final class R {
         public static final int favorite_stops_tv=0x7f080008;
         public static final int favorites=0x7f08000e;
         public static final int favorites_screen_layout=0x7f080005;
-        public static final int filterText=0x7f080024;
+        public static final int filterText=0x7f080025;
         public static final int findPossibleRoutes=0x7f080018;
         public static final int next_bus_credit=0x7f080003;
         public static final int possibleRoute=0x7f08000f;
@@ -61,19 +61,20 @@ public final class R {
         public static final int routeStopsListArriving=0x7f08001a;
         public static final int routeStopsListHeader=0x7f080019;
         public static final int routeStopsListItem=0x7f08001b;
-        public static final int route_messages=0x7f08001d;
-        public static final int routesListView=0x7f08001e;
+        public static final int route_messages=0x7f08001e;
+        public static final int route_messages_border=0x7f08001d;
+        public static final int routesListView=0x7f08001f;
         public static final int rudots_link=0x7f080002;
         public static final int ruontime_logo=0x7f08000b;
         public static final int rutgers_credit=0x7f080004;
         public static final int startStop=0x7f080015;
         public static final int startStopText=0x7f080014;
-        public static final int stopRoutesExListView=0x7f080022;
-        public static final int stopRoutesListArriving=0x7f080020;
-        public static final int stopRoutesListHeader=0x7f08001f;
-        public static final int stopRoutesListItem=0x7f080021;
-        public static final int stopsListView=0x7f080025;
-        public static final int stopsScreenLinearLayout=0x7f080023;
+        public static final int stopRoutesExListView=0x7f080023;
+        public static final int stopRoutesListArriving=0x7f080021;
+        public static final int stopRoutesListHeader=0x7f080020;
+        public static final int stopRoutesListItem=0x7f080022;
+        public static final int stopsListView=0x7f080026;
+        public static final int stopsScreenLinearLayout=0x7f080024;
         public static final int viewRoutes=0x7f08000c;
         public static final int viewStops=0x7f08000d;
     }

@@ -625,8 +625,8 @@ public class Database {
 		    			continue;
 		    		}
 		    		
-		    		Node message = er.getFirstChild();
-		    		NodeList msgProperties = message.getChildNodes();
+		    		NodeList messages = er.getChildNodes();
+		    		NodeList msgProperties = messages.item(1).getChildNodes();
 		    		for(int j = 0; j < msgProperties.getLength(); j++){
 		    			
 		    			Node property = msgProperties.item(j);

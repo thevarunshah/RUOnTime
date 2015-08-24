@@ -64,6 +64,8 @@ public class RouteStopsScreen extends Activity {
 		String message = Database.getMessages(routeId);
 		if(message == null){
 			((ViewGroup)tvMessages.getParent()).removeView(tvMessages);
+			View border = (View) findViewById(R.id.route_messages_border);
+			((ViewGroup)border.getParent()).removeView(border);
 		}
 		else{
 			tvMessages.setText(message);
