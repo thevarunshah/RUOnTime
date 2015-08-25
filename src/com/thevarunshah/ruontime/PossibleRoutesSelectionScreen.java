@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -59,6 +60,9 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 		destinationStop.setAdapter(destinationStopAdapter);
 		destinationStop.setSelection(1);
 		
+		ImageButton swapSelectedStops = (ImageButton) findViewById(R.id.swapSelections);
+		swapSelectedStops.setOnClickListener(this);
+		
 		Button findPossibleRoutes = (Button) findViewById(R.id.findPossibleRoutes);
 		findPossibleRoutes.setOnClickListener(this);
 	}
@@ -67,6 +71,12 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 	public void onClick(View v) {
 
 		switch(v.getId()){
+			case R.id.swapSelections: {
+				int startSelection = startStop.getSelectedItemPosition();
+				startStop.setSelection(destinationStop.getSelectedItemPosition());
+				destinationStop.setSelection(startSelection);
+				break;
+			}
 			case R.id.findPossibleRoutes: {
 				Stop start = (Stop) startStop.getSelectedItem();
 				Stop destination = (Stop) destinationStop.getSelectedItem();
