@@ -27,6 +27,19 @@
         android:layout_width="fill_parent"
         android:layout_height="2dp"
         android:background="@android:color/darker_gray" />
+    
+    <TextView
+        android:id="@+id/thankYous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Thank You:\n-Alan Chen: logo\n-Pranav Patel: UI Help\n-Vaibhav Patel: UI Feedback"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray" />
 
     <TextView
         android:id="@+id/rudots_link"
