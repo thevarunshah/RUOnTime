@@ -7,6 +7,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class PossibleRoutesExListAdapter extends BaseExpandableListAdapter {
  
         TextView txtListChild = (TextView) convertView.findViewById(R.id.possibleRoutesListItem);
         
-        final String timeText;
+        String timeText = "Arrives in ";
         Calendar timeNow = Calendar.getInstance();
         Calendar timeNow2 = Calendar.getInstance();
         timeNow.add(Calendar.MINUTE, childText);
@@ -61,13 +62,13 @@ public class PossibleRoutesExListAdapter extends BaseExpandableListAdapter {
         String startTime = sdf.format(timeNow.getTime());
         String reachTime = sdf.format(timeNow2.getTime());
         if(childText.equals(0))
-        	timeText = "   <1 minute at " + startTime + "; reach at " + reachTime;
+        	timeText += "<b>&lt;1</b> minute at <b>" + startTime + "</b><br/>&nbsp;&nbsp;&nbsp;&nbsp; reaches at <b>" + reachTime + "</b>";
 		else if(childText.equals(1))
-			timeText = "   1 minute at " + startTime + "; reach at " + reachTime;
+			timeText += "<b>1</b> minute at <b>" + startTime + "</b><br/>&nbsp;&nbsp;&nbsp;&nbsp; reaches at <b>" + reachTime + "</b>";
 		else
-			timeText = "   " + childText + " minutes at " + startTime + "; reach at " + reachTime;
+			timeText += "<b>" + childText + "</b> minutes at <b>" + startTime + "</b><br/>&nbsp;&nbsp;&nbsp;&nbsp; reaches at <b>" + reachTime + "</b>";
         
-        txtListChild.setText(timeText);
+        txtListChild.setText(Html.fromHtml(timeText));
         return convertView;
     }
  
@@ -105,7 +106,7 @@ public class PossibleRoutesExListAdapter extends BaseExpandableListAdapter {
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
         if(this._listDataChild.get(this._listDataHeader.get(groupPosition)).size() == 0){
-        	lblListHeader.setText(headerTitle + " - no trips currently possible");
+        	lblListHeader.setText(headerTitle + " - no trips possible right now");
         }
  
         return convertView;
