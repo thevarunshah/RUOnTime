@@ -571,6 +571,10 @@ public class Database {
 			PossibleRoutesTimes currentRoute = new PossibleRoutesTimes(route.getId());
 			ArrayList<StopTimes> stopTimes = findStopsForPossibleRoutes(route, startStop, destinationStop);
 			
+			if(stopTimes.size() != 2){
+				continue;
+			}
+			
 			int startTime = stopTimes.get(0).getTimesInSeconds().get(0);
 			currentRoute.setWaitTimes(stopTimes.get(0).getTimes());
 			int vehicleID = stopTimes.get(0).getVehicleIDs().get(0);
@@ -584,6 +588,24 @@ public class Database {
 						currentRoute.getTravelTimes().add(stopTimes.get(1).getTimes().get(j));
 					}
 					break;
+				}
+			}
+			
+			if(currentRoute.getTravelTimes().size() == 0 && stopTimes.get(0).getTimes().size() > 1){
+				startTime = stopTimes.get(0).getTimesInSeconds().get(1);
+				currentRoute.setWaitTimes(stopTimes.get(0).getTimes());
+				vehicleID = stopTimes.get(0).getVehicleIDs().get(1);
+				
+				destinationTimes = stopTimes.get(1).getTimesInSeconds();
+				for(int i = 0; i < destinationTimes.size(); i++){
+					int time = destinationTimes.get(i);
+					int vehicleID2 = stopTimes.get(1).getVehicleIDs().get(i);
+					if(time > startTime && vehicleID == vehicleID2){
+						for(int j = i; j < stopTimes.get(1).getTimes().size(); j++){
+							currentRoute.getTravelTimes().add(stopTimes.get(1).getTimes().get(j));
+						}
+						break;
+					}
 				}
 			}
 			
