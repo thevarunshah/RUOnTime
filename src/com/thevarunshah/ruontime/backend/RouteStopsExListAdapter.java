@@ -4,18 +4,28 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.thevarunshah.ruontime.R;
+import com.thevarunshah.ruontime.RouteStopsScreen;
 
 public class RouteStopsExListAdapter extends BaseExpandableListAdapter {
 	 
@@ -23,11 +33,19 @@ public class RouteStopsExListAdapter extends BaseExpandableListAdapter {
     private List<StopTimes> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<StopTimes, List<Integer>> _listDataChild;
+    
+	private NotificationManager mNotifyMgr;
+    private String routeName = "";
+    private String routeID = "";
  
-    public RouteStopsExListAdapter(Context context, List<StopTimes> listDataHeader, HashMap<StopTimes, List<Integer>> listChildData) {
+    public RouteStopsExListAdapter(Context context, List<StopTimes> listDataHeader, HashMap<StopTimes, List<Integer>> listChildData, Route route) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
+        
+        this.mNotifyMgr = (NotificationManager) _context.getSystemService(Context.NOTIFICATION_SERVICE);
+        this.routeName = route.getName();
+        this.routeID = route.getId();
     }
  
     @Override
@@ -41,7 +59,7 @@ public class RouteStopsExListAdapter extends BaseExpandableListAdapter {
     }
  
     @Override
-    public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
  
         final Integer childText = (Integer) getChild(groupPosition, childPosition);
         if (convertView == null) {
@@ -49,13 +67,13 @@ public class RouteStopsExListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.route_stops_list_item, parent, false);
         }
  
-        TextView txtListChild = (TextView) convertView.findViewById(R.id.routeStopsListItem);
+        final TextView txtListChild = (TextView) convertView.findViewById(R.id.routeStopsListItem);
         
         final String timeText;
         Calendar timeNow = Calendar.getInstance();
         timeNow.add(Calendar.MINUTE, childText);
         SimpleDateFormat sdf = new SimpleDateFormat("h:mm a", java.util.Locale.getDefault());
-        String formattedTime = sdf.format(timeNow.getTime());
+        final String formattedTime = sdf.format(timeNow.getTime());
         if(childText.equals(0)){
         	timeText = "<b>&lt;1</b> minute at <b>" + formattedTime + "</b>";
         }
@@ -65,6 +83,44 @@ public class RouteStopsExListAdapter extends BaseExpandableListAdapter {
 			timeText = "<b>" + childText + "</b> minutes at <b>" + formattedTime + "</b>";
         
         txtListChild.setText(Html.fromHtml(timeText));
+        
+        txtListChild.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				
+				final int notificationID = Database.getNotificationID();
+				
+				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(_context).setSmallIcon(R.drawable.logo)
+						.setContentTitle(routeName + " - " + _listDataHeader.get(groupPosition).getName()).setContentText("Arriving at " + formattedTime)
+						.setStyle(new NotificationCompat.BigTextStyle().setBigContentTitle(routeName)
+								.bigText("Reaching " + _listDataHeader.get(groupPosition).getName() + " at " + formattedTime));
+				
+				Intent resultIntent = new Intent(_context, RouteStopsScreen.class);
+				Bundle extra = new Bundle();
+				extra.putString("routeId", routeID);
+				resultIntent.putExtra("bundle", extra);
+				TaskStackBuilder stackBuilder = TaskStackBuilder.create(_context);
+				stackBuilder.addParentStack(RouteStopsScreen.class);
+				stackBuilder.addNextIntent(resultIntent);
+				PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(notificationID, PendingIntent.FLAG_UPDATE_CURRENT);
+				mBuilder.setContentIntent(resultPendingIntent);
+				
+				mNotifyMgr.notify(notificationID, mBuilder.build());
+				
+				new Timer().schedule(new TimerTask() {
+					
+					@Override
+					public void run() {
+						
+						mNotifyMgr.cancel(notificationID);
+					}
+				}, (childText.equals(0) ? 1 : childText)*60000);
+				
+				return true;
+			}
+		});
+        
         return convertView;
     }
  

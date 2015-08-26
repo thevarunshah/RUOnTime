@@ -12,6 +12,7 @@ import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -39,6 +40,7 @@ public class Database {
 	public static HashMap<String, Stop> stops = new HashMap<String, Stop>();
 	public static ArrayList<Route> favoriteRoutes = new ArrayList<Route>();
 	public static ArrayList<Stop> favoriteStops = new ArrayList<Stop>();
+	
 	/*
 	public static void main(String[] args) {
 		
@@ -771,6 +773,20 @@ public class Database {
 		}
 		
 		return null;
+	}
+
+	public static int getNotificationID() {
+		
+		Calendar c = Calendar.getInstance();
+		long now = c.getTimeInMillis();
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		c.set(Calendar.MILLISECOND, 0);
+		long passed = now - c.getTimeInMillis();
+		int notificationID = (int)passed / 1000;
+		
+		return notificationID;
 	}
 	
 	/*
