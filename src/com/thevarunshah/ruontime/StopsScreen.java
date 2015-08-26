@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -38,6 +39,7 @@ public class StopsScreen extends Activity {
 	EditText et;
 	ListView lw;
 	LinearLayout mainLayout;
+	private AlphaAnimation clickEffect = new AlphaAnimation(1F, 0.5F);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +122,8 @@ public class StopsScreen extends Activity {
 	        @Override
 	        public boolean onTouch(View v, MotionEvent event) {
 	            final int DRAWABLE_RIGHT = 2;
-
+	            
+	            v.setAnimation(clickEffect);
 	            if(event.getAction() == MotionEvent.ACTION_UP) {
 	                if(event.getX() >= (et.getRight() - et.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
 	                    et.getText().clear();

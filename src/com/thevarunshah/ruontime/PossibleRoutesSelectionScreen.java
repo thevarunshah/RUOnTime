@@ -13,6 +13,7 @@ import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -25,6 +26,7 @@ import com.thevarunshah.ruontime.backend.Stop;
 public class PossibleRoutesSelectionScreen extends Activity implements OnClickListener {
 
 	Spinner startStop, destinationStop;
+	private AlphaAnimation clickEffect = new AlphaAnimation(1F, 0.8F);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,8 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 	@Override
 	public void onClick(View v) {
 
+		v.startAnimation(clickEffect);
+		
 		switch(v.getId()){
 			case R.id.swapSelections: {
 				int startSelection = startStop.getSelectedItemPosition();

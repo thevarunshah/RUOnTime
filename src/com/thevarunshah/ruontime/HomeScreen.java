@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AlphaAnimation;
 import android.view.Window;
 import android.widget.Button;
 
 import com.thevarunshah.ruontime.backend.Database;
 
 public class HomeScreen extends Activity implements OnClickListener {
+	
+	private AlphaAnimation clickEffect = new AlphaAnimation(1F, 0.5F);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,8 @@ public class HomeScreen extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 
+		v.startAnimation(clickEffect);
+		
 		switch(v.getId()){
 			case R.id.viewRoutes:{
 				Intent i = new Intent(HomeScreen.this, RoutesScreen.class);
