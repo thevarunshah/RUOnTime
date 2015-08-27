@@ -91,7 +91,7 @@ public class StopRoutesExListAdapter extends BaseExpandableListAdapter {
 				final int notificationID = Database.getNotificationID();
 				
 				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(_context).setSmallIcon(R.drawable.logo)
-						.setContentTitle(stopName).setContentText(Database.routes.get(_listDataHeader.get(groupPosition).getId()).getName() + " arriving at " + formattedTime);
+						.setContentTitle(stopName).setContentText(Database.getRoutes().get(_listDataHeader.get(groupPosition).getId()).getName() + " arriving at " + formattedTime);
 				
 				Intent resultIntent = new Intent(_context, StopRoutesScreen.class);
 				Bundle extra = new Bundle();

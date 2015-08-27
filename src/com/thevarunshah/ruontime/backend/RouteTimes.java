@@ -31,7 +31,7 @@ public class RouteTimes implements Comparable<RouteTimes> {
 	}
 	
 	public String toString(){
-		return Database.routes.get(this.id).getName() + " (" + this.direction + ")";
+		return Database.getRoutes().get(this.id).getName() + " (" + this.direction + ")";
 	}
 	
 	public int compareTo(RouteTimes rt) {

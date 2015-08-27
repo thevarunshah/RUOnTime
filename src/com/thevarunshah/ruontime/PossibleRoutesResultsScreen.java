@@ -52,8 +52,8 @@ public class PossibleRoutesResultsScreen extends Activity {
 		List<PossibleRoutesTimes> listDataHeader = new ArrayList<PossibleRoutesTimes>();
 		HashMap<PossibleRoutesTimes, List<Integer>> listDataChild = new HashMap<PossibleRoutesTimes, List<Integer>>();
 		
-		Stop startStop = Database.stops.get(startStopString);
-		Stop destinationStop = Database.stops.get(destinationStopString);
+		Stop startStop = Database.getStops().get(startStopString);
+		Stop destinationStop = Database.getStops().get(destinationStopString);
 		
 		ArrayList<PossibleRoutesTimes> possibleRoutes = Database.findPossibleRoutes(startStop, destinationStop);
 		Collections.sort(possibleRoutes);

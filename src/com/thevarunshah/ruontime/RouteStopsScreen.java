@@ -76,7 +76,7 @@ public class RouteStopsScreen extends Activity {
 		List<StopTimes> listDataHeader = new ArrayList<StopTimes>();
 		HashMap<StopTimes, List<Integer>> listDataChild = new HashMap<StopTimes, List<Integer>>();
 		
-		r = Database.routes.get(routeId);
+		r = Database.getRoutes().get(routeId);
 		setTitle(r.getName() + " Route");
 		
 		ArrayList<StopTimes> routeStopTimes = Database.findStopsForRoute(r);
@@ -101,7 +101,7 @@ public class RouteStopsScreen extends Activity {
 						List<StopTimes> listDataHeader = new ArrayList<StopTimes>();
 						HashMap<StopTimes, List<Integer>> listDataChild = new HashMap<StopTimes, List<Integer>>();
 						
-						Route r = Database.routes.get(routeId);
+						Route r = Database.getRoutes().get(routeId);
 						ArrayList<StopTimes> routeStopTimes = Database.findStopsForRoute(r);
 						if(routeStopTimes.size() != 0){
 							for(StopTimes st : routeStopTimes){
@@ -160,7 +160,7 @@ public class RouteStopsScreen extends Activity {
 						List<StopTimes> listDataHeader = new ArrayList<StopTimes>();
 						HashMap<StopTimes, List<Integer>> listDataChild = new HashMap<StopTimes, List<Integer>>();
 						
-						Route r = Database.routes.get(routeId);
+						Route r = Database.getRoutes().get(routeId);
 						ArrayList<StopTimes> routeStopTimes = Database.findStopsForRoute(r);
 						if(routeStopTimes.size() != 0){
 							for(StopTimes st : routeStopTimes){

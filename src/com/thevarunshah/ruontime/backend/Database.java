@@ -36,8 +36,8 @@ public class Database {
 	
 	private final static String TAG = "Database";
 	
-	public static HashMap<String, Route> routes = new HashMap<String, Route>();
-	public static HashMap<String, Stop> stops = new HashMap<String, Stop>();
+	private static HashMap<String, Route> routes = new HashMap<String, Route>();
+	private static HashMap<String, Stop> stops = new HashMap<String, Stop>();
 	public static ArrayList<Route> favoriteRoutes = new ArrayList<Route>();
 	public static ArrayList<Stop> favoriteStops = new ArrayList<Stop>();
 	
@@ -350,6 +350,10 @@ public class Database {
 	
 	public static ArrayList<StopTimes> findStopsForRoute(Route r){
 		
+		if(routes.size() == 0 || stops.size() == 0){
+			buildDatabase();
+		}
+		
 		ArrayList<String> stopsOrder = new ArrayList<String>();
 		String routeStops = "predictionsForMultiStops";
 		for(Stop s : routes.get(r.getId()).getStops()){
@@ -413,6 +417,10 @@ public class Database {
 	}
 
 	public static ArrayList<RouteTimes> findRoutesforStop(Stop s){
+		
+		if(routes.size() == 0 || stops.size() == 0){
+			buildDatabase();
+		}
 		
 		String stopRoutes = "predictionsForMultiStops";
 		for(String id : stops.get(s.getName()).getIdsToRoutesMap().keySet()){
@@ -773,6 +781,20 @@ public class Database {
 		}
 		
 		return null;
+	}
+
+	public static HashMap<String, Route> getRoutes() {
+		if(routes.size() == 0){
+			buildDatabase();
+		}
+		return routes;
+	}
+
+	public static HashMap<String, Stop> getStops() {
+		if(stops.size() == 0){
+			buildDatabase();
+		}
+		return stops;
 	}
 
 	public static int getNotificationID() {

@@ -35,7 +35,7 @@ public class PossibleRoutesTimes implements Comparable<PossibleRoutesTimes>{
 	
 	public String toString(){
 		
-		Route route = Database.routes.get(this.id);
+		Route route = Database.getRoutes().get(this.id);
 		if(route != null)
 			return route.getName();
 		else{
