@@ -39,7 +39,6 @@ public final class R {
         public static final int ic_swap_vert_black_36dp=0x7f02000a;
         public static final int logo=0x7f02000b;
         public static final int time_selector=0x7f02000c;
-        public static final int title=0x7f02000d;
     }
     public static final class id {
         public static final int RSfavorite=0x7f090028;
