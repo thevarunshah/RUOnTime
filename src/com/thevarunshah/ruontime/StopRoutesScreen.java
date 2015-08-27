@@ -77,7 +77,7 @@ public class StopRoutesScreen extends Activity {
 			listDataChild.put(rt, rt.getTimes());
 		}
 		
-		listAdapter = new StopRoutesExListAdapter(this, listDataHeader, listDataChild);
+		listAdapter = new StopRoutesExListAdapter(this, listDataHeader, listDataChild, stopName);
 		exListView.setAdapter(listAdapter);
 		
 		if(listAdapter.getGroupCount() <= 3){
@@ -108,7 +108,7 @@ public class StopRoutesScreen extends Activity {
 							View v = exListView.getChildAt(0);
 							int top = (v == null) ? 0 : v.getTop();
 							
-							ExpandableListAdapter listAdapter2 = new StopRoutesExListAdapter(StopRoutesScreen.this, listDataHeader, listDataChild);
+							ExpandableListAdapter listAdapter2 = new StopRoutesExListAdapter(StopRoutesScreen.this, listDataHeader, listDataChild, stopName);
 							boolean[] tmp = new boolean[listAdapter.getGroupCount()];
 							for(int i = 0; i < tmp.length; i++){
 								tmp[i] = exListView.isGroupExpanded(i);
@@ -168,7 +168,7 @@ public class StopRoutesScreen extends Activity {
 							View v = exListView.getChildAt(0);
 							int top = (v == null) ? 0 : v.getTop();
 							
-							ExpandableListAdapter listAdapter2 = new StopRoutesExListAdapter(StopRoutesScreen.this, listDataHeader, listDataChild);
+							ExpandableListAdapter listAdapter2 = new StopRoutesExListAdapter(StopRoutesScreen.this, listDataHeader, listDataChild, stopName);
 							boolean[] tmp = new boolean[listAdapter.getGroupCount()];
 							for(int i = 0; i < tmp.length; i++){
 								tmp[i] = exListView.isGroupExpanded(i);
