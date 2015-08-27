@@ -63,28 +63,6 @@ public class StopsScreen extends Activity {
 			Toast.makeText(getApplicationContext(), "No stops are currently active.", Toast.LENGTH_LONG).show();
 			finish();
 		}
-		/*
-		 * the below code is to be used if wanting to sort by campus
-		else{
-			HashMap<String, ArrayList<Stop>> stopsByCampus = new HashMap<String, ArrayList<Stop>>();
-			for(Stop s : activeStops){
-				if(stopsByCampus.containsKey(s.getCampus())){
-					stopsByCampus.get(s.getCampus()).add(s);
-				}
-				else{
-					ArrayList<Stop> tmp = new ArrayList<Stop>();
-					tmp.add(s);
-					stopsByCampus.put(s.getCampus(), tmp);
-				}
-			}
-			activeStops.clear();
-			for(ArrayList<Stop> as : stopsByCampus.values()){
-				for(Stop s : as){
-					activeStops.add(s);
-				}
-			}
-		}
-		*/
 		
 		lw = (ListView) findViewById(R.id.stopsListView);
 		et = (EditText) findViewById(R.id.filterText);

@@ -70,7 +70,7 @@ public class Stop implements Comparable<Stop>, Serializable{
 	}
 	
 	public String toString(){
-		return this.name;// + " (" + this.campus + ")";
+		return this.name;
 	}
 	
 	public int compareTo(Stop s) {

@@ -63,34 +63,11 @@ public class HomeScreen extends Activity implements OnClickListener {
 				break;
 			}
 			case R.id.possibleRoute:{
-				/*
-				LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE); 
-				Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-				if(location != null){
-			        double longitude = location.getLongitude();
-			        double latitude = location.getLatitude();
-					//Toast.makeText(getApplicationContext(), latitude + ", " + longitude, Toast.LENGTH_SHORT).show();
-			        ArrayList<Stop> activeStops = Database.findActiveStops();
-			        ArrayList<StopDistance> distances = new ArrayList<StopDistance>();
-					for(Stop s : activeStops){
-						double xDist = s.getLat()-latitude;
-						double yDist = s.getLon()-longitude;
-						double distance = Math.sqrt(xDist*xDist+yDist*yDist);
-						distances.add(new StopDistance(s, distance));
-					}
-					if(distances.size() != 0){
-						Collections.sort(distances);
-						Toast.makeText(getApplicationContext(), "closest stop: "
-								+ activeStops.get(activeStops.indexOf(distances.get(0).getStop())), Toast.LENGTH_SHORT).show();
-					}
-				}
-				*/
 				Intent i = new Intent(HomeScreen.this, PossibleRoutesSelectionScreen.class);
 				startActivity(i);
 				break;
 			}
 			case R.id.about:{
-				//Toast.makeText(getApplicationContext(), "App created by Varun Shah", Toast.LENGTH_LONG).show();
 				Intent i = new Intent(HomeScreen.this, AboutScreen.class);
 				startActivity(i);
 				break;

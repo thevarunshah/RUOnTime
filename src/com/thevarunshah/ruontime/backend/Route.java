@@ -67,7 +67,7 @@ public class Route implements Comparable<Route>, Serializable{
 	}
 
 	public String toString(){
-		return this.name;// + " (" + this.path + ")";
+		return this.name;
 	}
 	
 	public boolean equals(Object o){

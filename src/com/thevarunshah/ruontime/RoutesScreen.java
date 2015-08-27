@@ -60,13 +60,11 @@ public class RoutesScreen extends Activity {
 	    }
 		SimpleAdapter adapter = new SimpleAdapter(this, data, android.R.layout.simple_list_item_2, 
 				new String[] {"RouteName", "RoutePath"}, new int[] {android.R.id.text1, android.R.id.text2});
-		//ArrayAdapter<Route> aa = new ArrayAdapter<Route>(this, android.R.layout.simple_list_item_1, activeRoutes);
 		lw.setAdapter(adapter);
 		lw.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3){
 
 				Route selectedRoute = activeRoutes.get(position);
-				//Toast.makeText(getApplicationContext(), "Route: " + selectedRoute.getId(), Toast.LENGTH_SHORT).show();
 				Intent i = new Intent(RoutesScreen.this, RouteStopsScreen.class);
 				Bundle extra = new Bundle();
 				extra.putString("routeId", selectedRoute.getId());

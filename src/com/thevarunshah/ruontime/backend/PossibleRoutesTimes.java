@@ -41,49 +41,6 @@ public class PossibleRoutesTimes implements Comparable<PossibleRoutesTimes>{
 		else{
 			return this.id;
 		}
-		
-		/*
-		String ret = "";
-		ret += Database.routes.get(this.id).getName();
-		int max = this.travelTimes.size();
-		int counter = 0;
-		if(max == 0){
-			ret += " - no route possible";
-			return ret;
-		}
-		else
-			ret += " - arriving in ";
-		for(Integer i : this.waitTimes){
-			counter++;
-			if(i.equals(0))
-				ret += "<1 minute";
-			else if(i.equals(1))
-				ret += "1 minute";
-			else
-				ret += i + " minutes";
-			if(counter != max)
-				ret += ", ";
-			else
-				break;
-		}
-		counter = 0;
-		ret += " and reaching destination after ";
-		for(Integer i : this.travelTimes){
-			counter++;
-			if(i.equals(0))
-				ret += "<1 minute";
-			else if(i.equals(1))
-				ret += "1 minute";
-			else{
-				int tmp = i-(this.waitTimes.get(this.travelTimes.indexOf(i)));
-				ret += tmp + " minutes";
-			}
-			if(counter != max)
-				ret += ", ";
-		}
-		
-		return ret;
-		*/
 	}
 	
 	public int compareTo(PossibleRoutesTimes frt){
