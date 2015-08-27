@@ -39,7 +39,7 @@ public class AboutScreen extends Activity {
 	    email.setMovementMethod(LinkMovementMethod.getInstance());
 	    
 	    TextView thankYous = (TextView) findViewById(R.id.thankYous);
-	    thankYous.setText(Html.fromHtml("Thank You:<br/>- <b>Alan Chen</b>: logo design<br/>- <b>Pranav Patel</b>: UI/UX Help<br/>- <b>Vaibhav Patel</b>: UI Feedback"));
+	    thankYous.setText(Html.fromHtml("Thank You:<br/>- <b>Pranav Patel</b>: UI/UX Comments<br/>- <b>Vaibhav Patel</b>: UI/Logo Feedback"));
 	}
 	
 	@Override

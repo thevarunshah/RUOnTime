@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Thank You:\n-Alan Chen: logo design\n-Pranav Patel: UI/UX Help\n-Vaibhav Patel: UI Feedback"
+        android:text="Thank You:\n-Pranav Patel: UI/UX Comments\n-Vaibhav Patel: UI/Logo Feedback"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <View
@@ -55,19 +55,11 @@
         android:background="@android:color/darker_gray" />
     
     <TextView
-        android:id="@+id/next_bus_credit"
+        android:id="@+id/copyright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="*Information about busses obtained from the NextBus API"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-    
-    <TextView
-        android:id="@+id/rutgers_credit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="*Images containing 'RU' or 'Rutgers' owned by Rutgers Univeristy"
+        android:text="Copyright 2015 Varun Shah\nLicensed under the Apache License, Version 2.0 (the 'License')"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>
