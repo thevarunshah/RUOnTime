@@ -62,6 +62,7 @@ public class RoutesScreen extends Activity {
 				new String[] {"RouteName", "RoutePath"}, new int[] {android.R.id.text1, android.R.id.text2});
 		lw.setAdapter(adapter);
 		lw.setOnItemClickListener(new OnItemClickListener(){
+			@Override
 			public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3){
 
 				Route selectedRoute = activeRoutes.get(position);

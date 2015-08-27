@@ -30,10 +30,12 @@ public class RouteTimes implements Comparable<RouteTimes> {
 		this.times = times;
 	}
 	
+	@Override
 	public String toString(){
 		return Database.getRoutes().get(this.id).getName() + " (" + this.direction + ")";
 	}
 	
+	@Override
 	public int compareTo(RouteTimes rt) {
 		return this.id.compareTo(rt.id);
 	}

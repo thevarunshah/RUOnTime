@@ -48,6 +48,7 @@ public class StopTimes {
 		this.vehicleIDs = vehicleIDs;
 	}
 	
+	@Override
 	public String toString(){
 		
 		return this.name;

@@ -83,6 +83,7 @@ public class StopsScreen extends Activity {
 		    public void afterTextChanged(Editable arg0) {}
 		});
 		lw.setOnItemClickListener(new OnItemClickListener(){
+			@Override
 			public void onItemClick(AdapterView<?> arg0, View v,int position, long arg3){
 				
 				Stop selectedStop = aa.getItem(position);
@@ -111,12 +112,14 @@ public class StopsScreen extends Activity {
 	        }
 	    });
 		lw.setOnScrollListener(new OnScrollListener() {
+			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 				
 				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE); 
 				imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
 			}
 
+			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) { }
 		});
 	}

@@ -62,14 +62,17 @@ public class Route implements Comparable<Route>, Serializable{
 		this.stops = stops;
 	}
 	
+	@Override
 	public int compareTo(Route r) {
 		return this.name.compareTo(r.name);
 	}
 
+	@Override
 	public String toString(){
 		return this.name;
 	}
 	
+	@Override
 	public boolean equals(Object o){
 		
 		if(o == null || !(o instanceof Route))

@@ -69,14 +69,17 @@ public class Stop implements Comparable<Stop>, Serializable{
 		}
 	}
 	
+	@Override
 	public String toString(){
 		return this.name;
 	}
 	
+	@Override
 	public int compareTo(Stop s) {
 		return this.name.compareTo(s.name);
 	}
 	
+	@Override
 	public boolean equals(Object o){
 		
 		if(o == null || !(o instanceof Stop))

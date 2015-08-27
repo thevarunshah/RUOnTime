@@ -33,6 +33,7 @@ public class PossibleRoutesTimes implements Comparable<PossibleRoutesTimes>{
 		this.travelTimes = travelTimes;
 	}
 	
+	@Override
 	public String toString(){
 		
 		Route route = Database.getRoutes().get(this.id);
@@ -43,6 +44,7 @@ public class PossibleRoutesTimes implements Comparable<PossibleRoutesTimes>{
 		}
 	}
 	
+	@Override
 	public int compareTo(PossibleRoutesTimes frt){
 		return this.id.compareTo(frt.id);
 	}

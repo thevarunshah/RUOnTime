@@ -64,7 +64,7 @@ public class RouteStopsScreen extends Activity {
 		String message = Database.getMessages(routeId);
 		if(message == null){
 			((ViewGroup)tvMessages.getParent()).removeView(tvMessages);
-			View border = (View) findViewById(R.id.route_messages_border);
+			View border = findViewById(R.id.route_messages_border);
 			((ViewGroup)border.getParent()).removeView(border);
 		}
 		else{
@@ -94,8 +94,10 @@ public class RouteStopsScreen extends Activity {
 		
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask(){
+			@Override
 			public void run(){
 				runOnUiThread(new Runnable(){
+					@Override
 					public void run(){
 
 						List<StopTimes> listDataHeader = new ArrayList<StopTimes>();
@@ -153,8 +155,10 @@ public class RouteStopsScreen extends Activity {
     	
     	timer = new Timer();
     	timer.scheduleAtFixedRate(new TimerTask(){
+			@Override
 			public void run(){
 				runOnUiThread(new Runnable(){
+					@Override
 					public void run(){
 
 						List<StopTimes> listDataHeader = new ArrayList<StopTimes>();

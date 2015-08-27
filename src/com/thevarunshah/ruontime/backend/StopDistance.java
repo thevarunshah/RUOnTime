@@ -20,6 +20,7 @@ public class StopDistance implements Comparable<StopDistance>{
 		return distance;
 	}
 
+	@Override
 	public int compareTo(StopDistance sd) {
 		return Double.compare(this.distance, sd.distance);
 	}

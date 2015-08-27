@@ -88,8 +88,10 @@ public class StopRoutesScreen extends Activity {
 		
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask(){
+			@Override
 			public void run(){
 				runOnUiThread(new Runnable(){
+					@Override
 					public void run(){
 
 						List<RouteTimes> listDataHeader = new ArrayList<RouteTimes>();
@@ -148,8 +150,10 @@ public class StopRoutesScreen extends Activity {
     	
     	timer = new Timer();
     	timer.scheduleAtFixedRate(new TimerTask(){
+			@Override
 			public void run(){
 				runOnUiThread(new Runnable(){
+					@Override
 					public void run(){
 
 						List<RouteTimes> listDataHeader = new ArrayList<RouteTimes>();
