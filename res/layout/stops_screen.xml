@@ -17,6 +17,7 @@
             android:layout_weight="1"
             android:hint="filter stops..."
             android:drawableRight="@drawable/ic_close_black_36dp"
+            android:drawableEnd="@drawable/ic_close_black_36dp"
             android:inputType="text">
         </EditText>
 

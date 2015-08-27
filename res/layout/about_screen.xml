@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:text="varun.shah@rutgers.edu"
+        android:text="Bugs/Comments? varun.shah@rutgers.edu"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <View
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Thank You:\n-Alan Chen: logo\n-Pranav Patel: UI Help\n-Vaibhav Patel: UI Feedback"
+        android:text="Thank You:\n-Alan Chen: logo design\n-Pranav Patel: UI/UX Help\n-Vaibhav Patel: UI Feedback"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <View
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="More bus information: RUDOTS"
+        android:text="To view bus route maps and more information about busses, visit RU DOTS"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <View
