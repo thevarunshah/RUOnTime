@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
@@ -15,7 +16,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,10 +91,9 @@ public class RouteStopsExListAdapter extends BaseExpandableListAdapter {
 				
 				final int notificationID = Database.getNotificationID();
 				
-				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(_context).setSmallIcon(R.drawable.logo)
+				Notification.Builder mBuilder = new Notification.Builder(_context).setSmallIcon(R.drawable.logo)
 						.setContentTitle(routeName + " - " + _listDataHeader.get(groupPosition).getName()).setContentText("Arriving at " + formattedTime)
-						.setStyle(new NotificationCompat.BigTextStyle().setBigContentTitle(routeName)
-								.bigText("Reaching " + _listDataHeader.get(groupPosition).getName() + " at " + formattedTime));
+						.setStyle(new Notification.InboxStyle().setBigContentTitle(routeName).addLine("Reaching " + _listDataHeader.get(groupPosition).getName()).addLine(" at " + formattedTime));
 				
 				Intent resultIntent = new Intent(_context, RouteStopsScreen.class);
 				Bundle extra = new Bundle();
