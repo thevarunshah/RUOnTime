@@ -46,7 +46,7 @@ public class RoutesScreen extends Activity {
 		activeRoutes = new ArrayList<Route>();
 		activeRoutes = Database.findActiveRoutes();
 		if(activeRoutes.size() == 0){
-			Toast.makeText(getApplicationContext(), "No routes are current active.", Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), "No routes are currently active.", Toast.LENGTH_LONG).show();
 			finish();
 		}
 		

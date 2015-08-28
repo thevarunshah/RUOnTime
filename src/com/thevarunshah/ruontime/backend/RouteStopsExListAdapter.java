@@ -91,7 +91,7 @@ public class RouteStopsExListAdapter extends BaseExpandableListAdapter {
 				
 				final int notificationID = Database.getNotificationID();
 				
-				Notification.Builder mBuilder = new Notification.Builder(_context).setSmallIcon(R.drawable.logo)
+				Notification.Builder mBuilder = new Notification.Builder(_context).setSmallIcon(R.drawable.ic_directions_bus_white_24dp)
 						.setContentTitle(routeName + " - " + _listDataHeader.get(groupPosition).getName()).setContentText("Arriving at " + formattedTime)
 						.setStyle(new Notification.InboxStyle().setBigContentTitle(routeName).addLine("Reaching " + _listDataHeader.get(groupPosition).getName()).addLine(" at " + formattedTime));
 				

@@ -55,6 +55,19 @@
         android:background="@android:color/darker_gray" />
     
     <TextView
+        android:id="@+id/rutgers_not_related"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="This app is not affliated with Rutgers Univeristy"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+    
+    <TextView
         android:id="@+id/copyright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

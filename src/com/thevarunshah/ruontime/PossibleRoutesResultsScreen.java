@@ -58,7 +58,7 @@ public class PossibleRoutesResultsScreen extends Activity {
 		ArrayList<PossibleRoutesTimes> possibleRoutes = Database.findPossibleRoutes(startStop, destinationStop);
 		Collections.sort(possibleRoutes);
 		if(possibleRoutes.size() == 0){
-			Toast.makeText(getApplicationContext(), "No direct routes possible.", Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), "No direct routes possible from " + startStopString + " to " + destinationStopString + ".", Toast.LENGTH_LONG).show();
 			finish();
 		}
 		for(PossibleRoutesTimes frt : possibleRoutes){
