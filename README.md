@@ -1,5 +1,17 @@
-# RUOnTime
-an Android app which provides the latest information on the Rutgers bus system
+# RU On Time?
+The easiest way to keep track of the Rutgers busses and make sure you are always on time! 
+
+Features:
+- blazing fast!
+- view live timings for all busses and stops!
+- save your favorite routes and stops for quick access!
+- find all possible routes (directions) from one stop to another!
+- send push notifications to keep track of when a bus is arriving!
+
+*this app is not affiliated with Rutgers University.
+
+#Available on Google Play
+Download: http://bit.ly/ruontime 
 
 #Copyright
 Copyright 2015 Varun Shah
