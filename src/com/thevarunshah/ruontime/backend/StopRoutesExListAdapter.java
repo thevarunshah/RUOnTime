@@ -4,8 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -16,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,6 +82,10 @@ public class StopRoutesExListAdapter extends BaseExpandableListAdapter {
         
         txtListChild.setText(Html.fromHtml(timeText));
         
+        final Calendar cancelTime = Calendar.getInstance();
+        cancelTime.add(Calendar.MINUTE, childText+1);
+        cancelTime.set(Calendar.SECOND, 0);
+        
     	txtListChild.setOnLongClickListener(new OnLongClickListener() {
 			
 			@Override
@@ -105,14 +108,12 @@ public class StopRoutesExListAdapter extends BaseExpandableListAdapter {
 				
 				mNotifyMgr.notify(notificationID, mBuilder.build());
 				
-				new Timer().schedule(new TimerTask() {
-					
-					@Override
-					public void run() {
-						
-						mNotifyMgr.cancel(notificationID);
-					}
-				}, (childText.equals(0) ? 1 : childText)*60000);
+				final Runnable cancelNotification = new Runnable() {
+				    public void run() {
+				    	mNotifyMgr.cancel(notificationID);
+				    }
+				};
+				new Handler().postDelayed(cancelNotification, cancelTime.getTimeInMillis()-Calendar.getInstance().getTimeInMillis());
 				
 				return true;
 			}
