@@ -554,6 +554,10 @@ public class Database {
 	
 	public static void readFavorites(Context context){
 		
+		if(Database.favoriteRoutes.size() != 0 || Database.favoriteStops.size() != 0){
+			return;
+		}
+		
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {

@@ -38,8 +38,6 @@ public class FavoritesScreen extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.favorites_screen);
 		
-		Database.readFavorites(getApplicationContext());
-		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#dd4b39")));
 		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
@@ -56,6 +54,13 @@ public class FavoritesScreen extends Activity{
 		
 		lvRoutes = (ListView) findViewById(R.id.favorite_routes_list);
 		lvStops = (ListView) findViewById(R.id.favorite_stops_list);
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		
+		Database.readFavorites(getApplicationContext());
 	}
 	
 	@Override
