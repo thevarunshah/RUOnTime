@@ -22,12 +22,13 @@ public class HomeScreen extends Activity implements OnClickListener {
 			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
-		Database.buildDatabase();
+		
+		if(Database.getRoutes().size() == 0 || Database.getStops().size() == 0){
+			Database.buildDatabase();
+		}
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.home_screen);
-		
-		Database.readFavorites(getApplicationContext());
 
 		Button viewRoutes = (Button) findViewById(R.id.viewRoutes);
 		viewRoutes.setOnClickListener(this);

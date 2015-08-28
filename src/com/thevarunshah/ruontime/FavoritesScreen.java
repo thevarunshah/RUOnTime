@@ -38,6 +38,8 @@ public class FavoritesScreen extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.favorites_screen);
 		
+		Database.readFavorites(getApplicationContext());
+		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#dd4b39")));
 		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
