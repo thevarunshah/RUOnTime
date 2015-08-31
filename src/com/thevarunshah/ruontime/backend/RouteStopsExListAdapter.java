@@ -111,7 +111,8 @@ public class RouteStopsExListAdapter extends BaseExpandableListAdapter {
 				mNotifyMgr.notify(notificationID, mBuilder.build());
 				
 				final Runnable cancelNotification = new Runnable() {
-				    public void run() {
+				    @Override
+					public void run() {
 				    	mNotifyMgr.cancel(notificationID);
 				    }
 				};

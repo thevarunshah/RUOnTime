@@ -42,10 +42,10 @@ public class PossibleRoutesResultsScreen extends Activity {
 		if(Build.VERSION.SDK_INT >= 18){
 			getActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
 		}
-		setTitle(Html.fromHtml("<b>"+getTitle()+"</b>"));
 		
 		String startStopString = getIntent().getBundleExtra("bundle").getString("startStop");
 		String destinationStopString = getIntent().getBundleExtra("bundle").getString("destinationStop");
+		setTitle(Html.fromHtml("<b>" + startStopString + " to " + destinationStopString + "</b>"));
 		
 		exListView = (ExpandableListView) findViewById(R.id.possibleRoutesExListView);
 		
