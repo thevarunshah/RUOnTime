@@ -14,7 +14,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -547,6 +549,7 @@ public class Database {
 		try {
 			fos = context.openFileOutput("database_backup.ser", Context.MODE_PRIVATE);
 			oos = new ObjectOutputStream(fos);
+			oos.writeObject(Calendar.getInstance().getTime());
 			oos.writeObject(routes);
 			oos.writeObject(stops);
 		} catch (Exception e) {
@@ -572,6 +575,11 @@ public class Database {
 		try {
 			fis = context.openFileInput("database_backup.ser");
 			ois = new ObjectInputStream(fis);
+			Date previous = (Date)ois.readObject();
+			Date today = Calendar.getInstance().getTime();
+			if(TimeUnit.DAYS.convert(today.getTime() - previous.getTime(), TimeUnit.MILLISECONDS) >= 7){
+				return false;
+			}
 			Database.routes = (HashMap<String, Route>)ois.readObject();
 			Database.stops = (HashMap<String, Stop>)ois.readObject();
 		} catch (Exception e) {
