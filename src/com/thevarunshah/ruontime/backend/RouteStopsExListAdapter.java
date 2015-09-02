@@ -5,6 +5,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import com.thevarunshah.ruontime.R;
+import com.thevarunshah.ruontime.RouteStopsScreen;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -22,9 +25,6 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-
-import com.thevarunshah.ruontime.R;
-import com.thevarunshah.ruontime.RouteStopsScreen;
 
 public class RouteStopsExListAdapter extends BaseExpandableListAdapter {
 	 

@@ -58,7 +58,7 @@ public class StopsScreen extends Activity {
 		}
 		setTitle(Html.fromHtml("<b>"+getTitle()+"</b>"));
 		
-		activeStops = Database.findActiveStops();
+		activeStops = Database.findActiveStops(getApplicationContext());
 		if(activeStops.size() == 0){
 			Toast.makeText(getApplicationContext(), "No stops are currently active.", Toast.LENGTH_LONG).show();
 			finish();

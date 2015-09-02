@@ -23,8 +23,8 @@ public class HomeScreen extends Activity implements OnClickListener {
 			StrictMode.setThreadPolicy(policy);
 		}
 		
-		if(Database.getRoutes().size() == 0 || Database.getStops().size() == 0){
-			Database.buildDatabase();
+		if(Database.getRoutes(getApplicationContext()).size() == 0 || Database.getStops(getApplicationContext()).size() == 0){
+			Database.buildDatabase(getApplicationContext());
 		}
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);

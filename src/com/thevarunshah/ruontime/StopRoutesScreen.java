@@ -63,10 +63,10 @@ public class StopRoutesScreen extends Activity {
 		List<RouteTimes> listDataHeader = new ArrayList<RouteTimes>();
 		HashMap<RouteTimes, List<Integer>> listDataChild = new HashMap<RouteTimes, List<Integer>>();
 		
-		s = Database.getStops().get(stopName);
+		s = Database.getStops(getApplicationContext()).get(stopName);
 		setTitle(s.getName() + " Stop");
 		
-		ArrayList<RouteTimes> stopRouteTimes = Database.findRoutesforStop(s);
+		ArrayList<RouteTimes> stopRouteTimes = Database.findRoutesforStop(s, getApplicationContext());
 		if(stopRouteTimes.size() == 0){
 			Toast.makeText(getApplicationContext(), "This route is currently not active.", Toast.LENGTH_LONG).show();
 			finish();
@@ -97,8 +97,8 @@ public class StopRoutesScreen extends Activity {
 						List<RouteTimes> listDataHeader = new ArrayList<RouteTimes>();
 						HashMap<RouteTimes, List<Integer>> listDataChild = new HashMap<RouteTimes, List<Integer>>();
 						
-						Stop s = Database.getStops().get(stopName);
-						ArrayList<RouteTimes> stopRouteTimes = Database.findRoutesforStop(s);
+						Stop s = Database.getStops(getApplicationContext()).get(stopName);
+						ArrayList<RouteTimes> stopRouteTimes = Database.findRoutesforStop(s, getApplicationContext());
 						if(stopRouteTimes.size() != 0){
 							Collections.sort(stopRouteTimes);
 							for(RouteTimes rt : stopRouteTimes){
@@ -159,8 +159,8 @@ public class StopRoutesScreen extends Activity {
 						List<RouteTimes> listDataHeader = new ArrayList<RouteTimes>();
 						HashMap<RouteTimes, List<Integer>> listDataChild = new HashMap<RouteTimes, List<Integer>>();
 						
-						Stop s = Database.getStops().get(stopName);
-						ArrayList<RouteTimes> stopRouteTimes = Database.findRoutesforStop(s);
+						Stop s = Database.getStops(getApplicationContext()).get(stopName);
+						ArrayList<RouteTimes> stopRouteTimes = Database.findRoutesforStop(s, getApplicationContext());
 						if(stopRouteTimes.size() != 0){
 							Collections.sort(stopRouteTimes);
 							for(RouteTimes rt : stopRouteTimes){

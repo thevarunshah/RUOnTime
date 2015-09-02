@@ -41,13 +41,18 @@ public class Database {
 	public static ArrayList<Route> favoriteRoutes = new ArrayList<Route>();
 	public static ArrayList<Stop> favoriteStops = new ArrayList<Stop>();
 	
-	public static void buildDatabase(){
+	public static void buildDatabase(Context context){
 		
 		try{
 			factory = DocumentBuilderFactory.newInstance();
 		    builder = factory.newDocumentBuilder();
 		}catch(Exception e){
 			Log.i(TAG, "exception: " + e);			
+		}
+		
+		if(readDatabase(context)){
+			Log.i(TAG, "database read successful");
+			return;
 		}
 		
 		String config = HttpGet(nextBusBaseURL + "routeConfig&terse");
@@ -109,13 +114,17 @@ public class Database {
 		    
 		}catch (Exception e){
 			System.out.println("exception: " + e);
+			return;
 		}
+		
+		Log.i(TAG, "backing up");
+		backupDatabase(context);
 	}
 	
-	public static ArrayList<Route> findActiveRoutes(){
+	public static ArrayList<Route> findActiveRoutes(Context context){
 		
 		if(routes.size() == 0 || stops.size() == 0){
-			buildDatabase();
+			buildDatabase(context);
 		}
 		
 		ArrayList<Route> activeRoutes = new ArrayList<Route>();
@@ -152,15 +161,15 @@ public class Database {
 		return activeRoutes;
 	}
 	
-	public static ArrayList<Stop> findActiveStops(){
+	public static ArrayList<Stop> findActiveStops(Context context){
 
 		if(routes.size() == 0 || stops.size() == 0){
-			buildDatabase();
+			buildDatabase(context);
 		}
 		
 		ArrayList<Stop> activeStops = new ArrayList<Stop>();
 		
-		ArrayList<Route> activeRoutes = findActiveRoutes();
+		ArrayList<Route> activeRoutes = findActiveRoutes(context);
 		for(Route r : activeRoutes){
 			for(Stop s : routes.get(r.getId()).getStops()){
 				if(!activeStops.contains(s))
@@ -172,10 +181,10 @@ public class Database {
 		return activeStops;
 	}
 	
-	public static ArrayList<StopTimes> findStopsForRoute(Route r){
+	public static ArrayList<StopTimes> findStopsForRoute(Route r, Context context){
 		
 		if(routes.size() == 0 || stops.size() == 0){
-			buildDatabase();
+			buildDatabase(context);
 		}
 		
 		ArrayList<String> stopsOrder = new ArrayList<String>();
@@ -240,10 +249,10 @@ public class Database {
 		return routeStopTimesFinal;
 	}
 
-	public static ArrayList<RouteTimes> findRoutesforStop(Stop s){
+	public static ArrayList<RouteTimes> findRoutesforStop(Stop s, Context context){
 		
 		if(routes.size() == 0 || stops.size() == 0){
-			buildDatabase();
+			buildDatabase(context);
 		}
 		
 		String stopRoutes = "predictionsForMultiStops";
@@ -289,7 +298,7 @@ public class Database {
 		    			}
 		    		}
 		    		
-		    		RouteTimes rt = new RouteTimes(routeElement.getAttribute("routeTag"), routeDirection);
+		    		RouteTimes rt = new RouteTimes(routeElement.getAttribute("routeTag"), routeDirection, context);
 		    		rt.setTimes(routeTimes);
 		    		stopRouteTimes.add(rt);
 		    	}
@@ -383,12 +392,12 @@ public class Database {
 		return routeStopTimesFinal;
 	}
 	
-	public static ArrayList<PossibleRoutesTimes> findPossibleRoutes(Stop startStop, Stop destinationStop){
+	public static ArrayList<PossibleRoutesTimes> findPossibleRoutes(Stop startStop, Stop destinationStop, Context context){
 		
 		ArrayList<PossibleRoutesTimes> possibleRoutes = new ArrayList<PossibleRoutesTimes>();
 		
 		ArrayList<Route> possibleDirectRoutes = new ArrayList<Route>();
-		ArrayList<Route> activeRoutes = findActiveRoutes();
+		ArrayList<Route> activeRoutes = findActiveRoutes(context);
 		for(Route route : activeRoutes){
 			ArrayList<Stop> stopList = routes.get(route.getId()).getStops();
 			if(stopList.contains(startStop) && stopList.contains(destinationStop)){
@@ -402,7 +411,7 @@ public class Database {
 		
 		for(Route route : possibleDirectRoutes){
 			
-			PossibleRoutesTimes currentRoute = new PossibleRoutesTimes(route.getId());
+			PossibleRoutesTimes currentRoute = new PossibleRoutesTimes(route.getId(), context);
 			ArrayList<StopTimes> stopTimes = findStopsForPossibleRoutes(route, startStop, destinationStop);
 			
 			if(stopTimes.size() != 2){
@@ -531,6 +540,56 @@ public class Database {
 		return stopTimes;
 	}
 	
+	public static void backupDatabase(Context context){
+		
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		try {
+			fos = context.openFileOutput("database_backup.ser", Context.MODE_PRIVATE);
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(routes);
+			oos.writeObject(stops);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			try{
+				oos.close();
+				fos.close();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static boolean readDatabase(Context context){
+		
+		if(Database.routes.size() != 0 || Database.stops.size() != 0){
+			return true;
+		}
+		
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		try {
+			fis = context.openFileInput("database_backup.ser");
+			ois = new ObjectInputStream(fis);
+			Database.routes = (HashMap<String, Route>)ois.readObject();
+			Database.stops = (HashMap<String, Stop>)ois.readObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally{
+			try{
+				if(ois != null) ois.close();
+				if(fis != null) fis.close();
+			} catch(Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	public static void backupFavorites(Context context){
 		
 		FileOutputStream fos = null;
@@ -601,16 +660,16 @@ public class Database {
 		return null;
 	}
 
-	public static HashMap<String, Route> getRoutes() {
+	public static HashMap<String, Route> getRoutes(Context context) {
 		if(routes.size() == 0){
-			buildDatabase();
+			buildDatabase(context);
 		}
 		return routes;
 	}
 
-	public static HashMap<String, Stop> getStops() {
+	public static HashMap<String, Stop> getStops(Context context) {
 		if(stops.size() == 0){
-			buildDatabase();
+			buildDatabase(context);
 		}
 		return stops;
 	}

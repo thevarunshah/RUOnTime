@@ -44,7 +44,7 @@ public class RoutesScreen extends Activity {
 		setTitle(Html.fromHtml("<b>"+getTitle()+"</b>"));
 		
 		activeRoutes = new ArrayList<Route>();
-		activeRoutes = Database.findActiveRoutes();
+		activeRoutes = Database.findActiveRoutes(getApplicationContext());
 		if(activeRoutes.size() == 0){
 			Toast.makeText(getApplicationContext(), "No routes are currently active.", Toast.LENGTH_LONG).show();
 			finish();

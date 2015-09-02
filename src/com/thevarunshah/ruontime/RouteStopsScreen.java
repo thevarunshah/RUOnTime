@@ -76,10 +76,10 @@ public class RouteStopsScreen extends Activity {
 		List<StopTimes> listDataHeader = new ArrayList<StopTimes>();
 		HashMap<StopTimes, List<Integer>> listDataChild = new HashMap<StopTimes, List<Integer>>();
 		
-		r = Database.getRoutes().get(routeId);
+		r = Database.getRoutes(getApplicationContext()).get(routeId);
 		setTitle(r.getName() + " Route");
 		
-		ArrayList<StopTimes> routeStopTimes = Database.findStopsForRoute(r);
+		ArrayList<StopTimes> routeStopTimes = Database.findStopsForRoute(r, getApplicationContext());
 		if(routeStopTimes.size() == 0){
 			Toast.makeText(getApplicationContext(), "This stop is currently not active.", Toast.LENGTH_LONG).show();
 			finish();
@@ -103,8 +103,8 @@ public class RouteStopsScreen extends Activity {
 						List<StopTimes> listDataHeader = new ArrayList<StopTimes>();
 						HashMap<StopTimes, List<Integer>> listDataChild = new HashMap<StopTimes, List<Integer>>();
 						
-						Route r = Database.getRoutes().get(routeId);
-						ArrayList<StopTimes> routeStopTimes = Database.findStopsForRoute(r);
+						Route r = Database.getRoutes(getApplicationContext()).get(routeId);
+						ArrayList<StopTimes> routeStopTimes = Database.findStopsForRoute(r, getApplicationContext());
 						if(routeStopTimes.size() != 0){
 							for(StopTimes st : routeStopTimes){
 								listDataHeader.add(st);
@@ -164,8 +164,8 @@ public class RouteStopsScreen extends Activity {
 						List<StopTimes> listDataHeader = new ArrayList<StopTimes>();
 						HashMap<StopTimes, List<Integer>> listDataChild = new HashMap<StopTimes, List<Integer>>();
 						
-						Route r = Database.getRoutes().get(routeId);
-						ArrayList<StopTimes> routeStopTimes = Database.findStopsForRoute(r);
+						Route r = Database.getRoutes(getApplicationContext()).get(routeId);
+						ArrayList<StopTimes> routeStopTimes = Database.findStopsForRoute(r, getApplicationContext());
 						if(routeStopTimes.size() != 0){
 							for(StopTimes st : routeStopTimes){
 								listDataHeader.add(st);

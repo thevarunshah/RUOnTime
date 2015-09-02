@@ -75,7 +75,7 @@ public class FavoritesScreen extends Activity{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				
-				ArrayList<Route> activeRoutes = Database.findActiveRoutes();
+				ArrayList<Route> activeRoutes = Database.findActiveRoutes(getApplicationContext());
 				Route selectedRoute = aaRoutes.getItem(position);
 				if(!activeRoutes.contains(selectedRoute)){
 					Toast.makeText(getApplicationContext(), "Route is not active.", Toast.LENGTH_LONG).show();
@@ -97,7 +97,7 @@ public class FavoritesScreen extends Activity{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				
-				ArrayList<Stop> activeStops = Database.findActiveStops();
+				ArrayList<Stop> activeStops = Database.findActiveStops(getApplicationContext());
 				Stop selectedStop = aaStops.getItem(position);
 				if(!activeStops.contains(selectedStop)){
 					Toast.makeText(getApplicationContext(), "Stop is not active.", Toast.LENGTH_LONG).show();

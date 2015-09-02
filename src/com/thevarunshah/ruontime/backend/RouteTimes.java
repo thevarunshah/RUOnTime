@@ -2,16 +2,20 @@ package com.thevarunshah.ruontime.backend;
 
 import java.util.ArrayList;
 
+import android.content.Context;
+
 
 public class RouteTimes implements Comparable<RouteTimes> {
 
 	private String id;
 	private String direction;
 	private ArrayList<Integer> times = new ArrayList<Integer>();
+	private Context context;
 	
-	public RouteTimes(String id, String direction){
+	public RouteTimes(String id, String direction, Context context){
 		this.id = id;
 		this.direction = direction;
+		this.context = context;
 	}
 
 	public String getId() {
@@ -32,7 +36,7 @@ public class RouteTimes implements Comparable<RouteTimes> {
 	
 	@Override
 	public String toString(){
-		return Database.getRoutes().get(this.id).getName() + " (" + this.direction + ")";
+		return Database.getRoutes(this.context).get(this.id).getName() + " (" + this.direction + ")";
 	}
 	
 	@Override

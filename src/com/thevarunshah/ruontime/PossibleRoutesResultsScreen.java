@@ -63,10 +63,10 @@ public class PossibleRoutesResultsScreen extends Activity {
 		List<PossibleRoutesTimes> listDataHeader = new ArrayList<PossibleRoutesTimes>();
 		HashMap<PossibleRoutesTimes, List<Integer>> listDataChild = new HashMap<PossibleRoutesTimes, List<Integer>>();
 		
-		Stop startStop = Database.getStops().get(startStopString);
-		Stop destinationStop = Database.getStops().get(destinationStopString);
+		Stop startStop = Database.getStops(getApplicationContext()).get(startStopString);
+		Stop destinationStop = Database.getStops(getApplicationContext()).get(destinationStopString);
 		
-		ArrayList<PossibleRoutesTimes> possibleRoutes = Database.findPossibleRoutes(startStop, destinationStop);
+		ArrayList<PossibleRoutesTimes> possibleRoutes = Database.findPossibleRoutes(startStop, destinationStop, getApplicationContext());
 		Collections.sort(possibleRoutes);
 		if(possibleRoutes.size() == 0){
 			Toast.makeText(getApplicationContext(), "No direct routes possible from " + startStopString + " to " + destinationStopString + ".", Toast.LENGTH_LONG).show();
@@ -98,10 +98,10 @@ public class PossibleRoutesResultsScreen extends Activity {
 						List<PossibleRoutesTimes> listDataHeader = new ArrayList<PossibleRoutesTimes>();
 						HashMap<PossibleRoutesTimes, List<Integer>> listDataChild = new HashMap<PossibleRoutesTimes, List<Integer>>();
 						
-						Stop startStop = Database.getStops().get(startStopString);
-						Stop destinationStop = Database.getStops().get(destinationStopString);
+						Stop startStop = Database.getStops(getApplicationContext()).get(startStopString);
+						Stop destinationStop = Database.getStops(getApplicationContext()).get(destinationStopString);
 						
-						ArrayList<PossibleRoutesTimes> possibleRoutes = Database.findPossibleRoutes(startStop, destinationStop);
+						ArrayList<PossibleRoutesTimes> possibleRoutes = Database.findPossibleRoutes(startStop, destinationStop, getApplicationContext());
 						Collections.sort(possibleRoutes);
 						if(possibleRoutes.size() != 0){
 							
@@ -164,10 +164,10 @@ public class PossibleRoutesResultsScreen extends Activity {
 						List<PossibleRoutesTimes> listDataHeader = new ArrayList<PossibleRoutesTimes>();
 						HashMap<PossibleRoutesTimes, List<Integer>> listDataChild = new HashMap<PossibleRoutesTimes, List<Integer>>();
 						
-						Stop startStop = Database.getStops().get(startStopString);
-						Stop destinationStop = Database.getStops().get(destinationStopString);
+						Stop startStop = Database.getStops(getApplicationContext()).get(startStopString);
+						Stop destinationStop = Database.getStops(getApplicationContext()).get(destinationStopString);
 						
-						ArrayList<PossibleRoutesTimes> possibleRoutes = Database.findPossibleRoutes(startStop, destinationStop);
+						ArrayList<PossibleRoutesTimes> possibleRoutes = Database.findPossibleRoutes(startStop, destinationStop, getApplicationContext());
 						Collections.sort(possibleRoutes);
 						if(possibleRoutes.size() != 0){
 							

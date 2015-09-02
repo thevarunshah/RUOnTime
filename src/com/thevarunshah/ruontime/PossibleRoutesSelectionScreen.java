@@ -45,7 +45,7 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 		}
 		setTitle(Html.fromHtml("<b>"+getTitle()+"</b>"));
 		
-		ArrayList<Stop> activeStops = Database.findActiveStops();
+		ArrayList<Stop> activeStops = Database.findActiveStops(getApplicationContext());
 		if(activeStops.size() == 0){
 			Toast.makeText(getApplicationContext(), "Unable to find direct routes - no stops are currently active.", Toast.LENGTH_LONG).show();
 			finish();
