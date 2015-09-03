@@ -76,6 +76,13 @@ public class RoutesScreen extends Activity {
 	}
 	
 	@Override
+	protected void onStart() {
+		super.onStart();
+		
+		Database.readFavorites(getApplicationContext());
+	}
+	
+	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case android.R.id.home:
