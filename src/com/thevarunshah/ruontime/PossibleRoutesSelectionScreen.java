@@ -2,6 +2,9 @@ package com.thevarunshah.ruontime;
 
 import java.util.ArrayList;
 
+import com.thevarunshah.ruontime.backend.Database;
+import com.thevarunshah.ruontime.backend.Stop;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,9 +22,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.thevarunshah.ruontime.backend.Database;
-import com.thevarunshah.ruontime.backend.Stop;
 
 public class PossibleRoutesSelectionScreen extends Activity implements OnClickListener {
 
