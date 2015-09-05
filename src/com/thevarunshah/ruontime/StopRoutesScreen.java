@@ -133,6 +133,13 @@ public class StopRoutesScreen extends Activity {
 		}, 30000, 30000);
 		
 	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		
+		Database.readFavorites(getApplicationContext());
+	}
 
     @Override
     protected void onPause() {
