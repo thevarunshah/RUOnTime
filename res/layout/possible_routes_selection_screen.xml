@@ -73,7 +73,7 @@
         android:id="@+id/recentSelectionsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="33dp"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#dd4b39"
