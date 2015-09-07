@@ -17,15 +17,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 public class PossibleRoutesSelectionScreen extends Activity implements OnClickListener {
 
 	Spinner startStop, destinationStop;
+	ListView recentsList;
+	ArrayAdapter<String> recentsListAdapter;
 	private AlphaAnimation clickEffect = new AlphaAnimation(1F, 0.8F);
 	
 	@Override
@@ -62,6 +67,32 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 		destinationStop.setAdapter(destinationStopAdapter);
 		destinationStop.setSelection(1);
 		
+		Database.readRecents(getApplicationContext());
+		recentsList = (ListView) findViewById(R.id.recentsList);
+		recentsListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Database.recentSelections);
+		recentsList.setAdapter(recentsListAdapter);
+		recentsList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				
+				String selected = recentsListAdapter.getItem(position);
+				String start = selected.substring(0, selected.indexOf(" to "));
+				String destination = selected.substring(selected.indexOf(" to ")+4);
+				Database.recentSelections.add(0, selected);
+				Database.recentSelections.remove(position+1);
+				recentsListAdapter.notifyDataSetChanged();
+				Database.backupRecents(getApplicationContext());
+				
+				Intent i = new Intent(PossibleRoutesSelectionScreen.this, PossibleRoutesResultsScreen.class);
+				Bundle extra = new Bundle();
+				extra.putString("startStop", start);
+				extra.putString("destinationStop", destination);
+				i.putExtra("bundle", extra);
+				startActivity(i);
+			}
+		});
+		
 		ImageButton swapSelectedStops = (ImageButton) findViewById(R.id.swapSelections);
 		swapSelectedStops.setOnClickListener(this);
 		
@@ -88,6 +119,21 @@ public class PossibleRoutesSelectionScreen extends Activity implements OnClickLi
 					Toast.makeText(getApplicationContext(), "The destination cannot be the same as the starting stop.", Toast.LENGTH_SHORT).show();
 					break;
 				}
+				
+				String route = start.getName() + " to " + destination.getName();
+				if(!Database.recentSelections.contains(route)){
+					Database.recentSelections.add(0, route);
+					if(Database.recentSelections.size() > 5){
+						Database.recentSelections.remove(5);
+					}
+				}
+				else{
+					int before = Database.recentSelections.indexOf(route);
+					Database.recentSelections.add(0, route);
+					Database.recentSelections.remove(before+1);
+				}
+				recentsListAdapter.notifyDataSetChanged();
+				Database.backupRecents(getApplicationContext());
 				Intent i = new Intent(PossibleRoutesSelectionScreen.this, PossibleRoutesResultsScreen.class);
 				Bundle extra = new Bundle();
 				extra.putString("startStop", start.getName());

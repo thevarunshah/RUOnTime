@@ -42,6 +42,7 @@ public class Database {
 	private static HashMap<String, Stop> stops = new HashMap<String, Stop>();
 	public static ArrayList<Route> favoriteRoutes = new ArrayList<Route>();
 	public static ArrayList<Stop> favoriteStops = new ArrayList<Stop>();
+	public static ArrayList<String> recentSelections = new ArrayList<String>();
 	
 	public static void buildDatabase(Context context){
 		
@@ -566,7 +567,7 @@ public class Database {
 	
 	public static boolean readDatabase(Context context){
 		
-		if(Database.routes.size() != 0 || Database.stops.size() != 0){
+		if(routes.size() != 0 || stops.size() != 0){
 			return true;
 		}
 		
@@ -580,8 +581,8 @@ public class Database {
 			if(TimeUnit.DAYS.convert(today.getTime() - previous.getTime(), TimeUnit.MILLISECONDS) >= 7){
 				return false;
 			}
-			Database.routes = (HashMap<String, Route>)ois.readObject();
-			Database.stops = (HashMap<String, Stop>)ois.readObject();
+			routes = (HashMap<String, Route>)ois.readObject();
+			stops = (HashMap<String, Stop>)ois.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -621,7 +622,7 @@ public class Database {
 	
 	public static void readFavorites(Context context){
 		
-		if(Database.favoriteRoutes.size() != 0 || Database.favoriteStops.size() != 0){
+		if(favoriteRoutes.size() != 0 || favoriteStops.size() != 0){
 			return;
 		}
 		
@@ -630,8 +631,52 @@ public class Database {
 		try {
 			fis = context.openFileInput("favorites_backup.ser");
 			ois = new ObjectInputStream(fis);
-			Database.favoriteRoutes = (ArrayList<Route>)ois.readObject();
-			Database.favoriteStops = (ArrayList<Stop>)ois.readObject();
+			favoriteRoutes = (ArrayList<Route>)ois.readObject();
+			favoriteStops = (ArrayList<Stop>)ois.readObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			try{
+				if(ois != null) ois.close();
+				if(fis != null) fis.close();
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void backupRecents(Context context){
+		
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		try {
+			fos = context.openFileOutput("recents_backup.ser", Context.MODE_PRIVATE);
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(recentSelections);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			try{
+				oos.close();
+				fos.close();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void readRecents(Context context){
+		
+		if(recentSelections.size() != 0){
+			return;
+		}
+		
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		try {
+			fis = context.openFileInput("recents_backup.ser");
+			ois = new ObjectInputStream(fis);
+			recentSelections = (ArrayList<String>)ois.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally{
