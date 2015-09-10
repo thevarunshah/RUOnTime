@@ -53,26 +53,6 @@
 	            android:padding="20dp"
 	            android:text="Stops"
 	            android:textColor="@android:color/black" />
-	        
-	        <Button
-	            android:id="@+id/favorites"
-	            style="@android:style/Widget.Holo.Light.Button"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:background="@android:color/transparent"
-	            android:drawableTop="@drawable/ic_star_black_48dp"
-	            android:drawablePadding="5dp"
-	            android:padding="20dp"
-	            android:text="Favorites"
-	            android:textColor="@android:color/black" />
-	
-	    </LinearLayout>
-	    
-	    <LinearLayout
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_gravity="center"
-	        android:orientation="horizontal" >
 	
 	        <Button
 	            android:id="@+id/possibleRoute"
@@ -84,6 +64,26 @@
 	            android:drawablePadding="5dp"
 	            android:padding="20dp"
 	            android:text="Possible\nRoutes"
+	            android:textColor="@android:color/black" />
+	
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:orientation="horizontal" >
+	        
+	        <Button
+	            android:id="@+id/favorites"
+	            style="@android:style/Widget.Holo.Light.Button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:background="@android:color/transparent"
+	            android:drawableTop="@drawable/ic_star_black_48dp"
+	            android:drawablePadding="5dp"
+	            android:padding="20dp"
+	            android:text="Favorites"
 	            android:textColor="@android:color/black" />
 	
 	        <Button
